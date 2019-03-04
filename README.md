@@ -35,10 +35,10 @@ This code was tested with Tensorflow 1.0, CUDA 8.0 and Ubuntu 16.04.
 
 Git clone this repo and change to the cloned dir:
 
-'''bash
+```bash
 git clone
 cd semantic_depth
-'''
+```
 
 Using virtual environments is always a good idea. We will need to have pip and virtualenv installed.
 
@@ -102,10 +102,10 @@ Make sure that your virtulenv is activated. Otherwise, run the following inside 
 
 Then, change directories to 'fcn8s' and execute the 'fcn.py' file to train our FCN-8s implementation on a specified dataset (e.g., roborace750_mockup or Cityscapes) like so:
 
-'''bash
+```bash
 cd fcn8s
 python fcn.py --dataset=roborace750_mockup --epochs=100
-'''
+```
 
 
 After training is done, the following folders will have been created:
@@ -147,11 +147,11 @@ We use the network developed by Godard et al., called [MonoDepth](https://github
 
 To download the [monodepth model](https://github.com/mrharicot/monodepth) trained on cityscapes by [Godard](https://github.com/mrharicot/monodepth), go to the [monodepth repo](https://github.com/mrharicot/monodepth) or run the following:
 
-'''bash
+```bash
 cd models
 sudo chmod +x get_monodepth_model.sh
 ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
-''' 
+``` 
 
 
 ## SemanticDepth
