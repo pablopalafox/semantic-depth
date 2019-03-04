@@ -102,14 +102,14 @@ The source files for the semantic segmentation network are under the folder [fcn
 
 * Make sure that your virtulenv is activated. Otherwise, run the following inside the root directory of your project (or wherever you have your virtual environment):
 
-`source .venv/bin/activate`
+    `source .venv/bin/activate`
 
 * Then, change directories to [fcn8s](fcn8s) and execute the **fcn.py** file to train our FCN-8s implementation on a specified dataset (e.g., roborace750_mockup or Cityscapes) like so:
 
-```bash
-$ cd fcn8s
-$ python fcn.py --dataset=roborace750_mockup --epochs=100
-```
+    ```bash
+    $ cd fcn8s
+    $ python fcn.py --dataset=roborace750_mockup --epochs=100
+    ```
 
 
 * After training is done, the following folders will have been created:
