@@ -146,9 +146,11 @@ After testing is done, the following folder and files will have appeared in the 
 ## 4. Monocular Depth Estimation Network (monodepth)
 We use the network developed by Godard et al., called [MonoDepth](https://github.com/mrharicot/monodepth) (Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.).
 
+<a name="monodepth_model"></a>
+
+
 ### Monodepth model (monocular depth estimation model trained on Cityscapes by [Godard](https://github.com/mrharicot/monodepth))
 
-<a name="monodepth_model"></a>
 
 To download the [monodepth model](https://github.com/mrharicot/monodepth) trained on cityscapes by [Godard](https://github.com/mrharicot/monodepth), go to the [monodepth repo](https://github.com/mrharicot/monodepth) or run the following:
 
