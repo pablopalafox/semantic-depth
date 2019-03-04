@@ -3,7 +3,7 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 
 | | |
 |:-------------------------:|:-------------------------:|
-|<img width="1604" alt="test_3" src="/assets/images/test_munich/test_3.png">  Test image number 3 from our Munich test set  |  <img width="1604" alt="test_3_output" src="/assets/images/test_munich/test_3_output.png">|
+|<img alt="test_3" src="/assets/images/test_munich/test_3.png">  |  <img width="1604" alt="test_3_output" src="/assets/images/test_munich/test_3_output.png">|
 |<img width="1604" alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img width="1604" alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
 
 
