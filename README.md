@@ -84,7 +84,8 @@ For the semantic segmentation task, another option is that you just train on [Ki
 
 [MonoDepth](https://github.com/mrharicot/monodepth), an unsupervised single image depth prediction network that we make use of in our work, can be trained on Kitty or Cityscapes.
 
-We directly use the pre-trained model for Cityscapes, which you can get at the [monodepth](https://github.com/mrharicot/monodepth) repo, at the Models section.
+We directly use the pre-trained model for Cityscapes, which you can get at the [monodepth](https://github.com/mrharicot/monodepth) repo, at the Models section. Alternatively, follow the instructions in section [Monodepth model](#monodepth_model).
+
 
 ### Munich Test Set
 
@@ -145,7 +146,9 @@ After testing is done, the following folder and files will have appeared in the 
 ## 4. Monocular Depth Estimation Network (monodepth)
 We use the network developed by Godard et al., called [MonoDepth](https://github.com/mrharicot/monodepth) (Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.).
 
-### Monodepth model (monocular depth estimation model trained on Cityscapes by [Godard]())
+### Monodepth model (monocular depth estimation model trained on Cityscapes by [Godard](https://github.com/mrharicot/monodepth))
+
+<a name="monodepth_model"></a>
 
 To download the [monodepth model](https://github.com/mrharicot/monodepth) trained on cityscapes by [Godard](https://github.com/mrharicot/monodepth), go to the [monodepth repo](https://github.com/mrharicot/monodepth) or run the following:
 
