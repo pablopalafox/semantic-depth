@@ -64,7 +64,7 @@ Inside the virtualenv, you can run:
 
 `$ pip install -r requirements.txt`
 
-to get the dependencies needed.
+to get the [dependencies](requirements.txt) needed.
 
 
 
