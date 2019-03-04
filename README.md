@@ -2,6 +2,7 @@
 Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of an Autonomous Vehicle
 
 | | |
+|:-------------------------:|:-------------------------:|
 |<img width="1604" alt="" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">  blah |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|
 |<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|
 
@@ -15,8 +16,13 @@ We have two ways of computing the depth of the road at a certain depth. First, a
 Second, an _advanced_ distance. Here we additionally extract the pointclouds corresponding to hypothetical left and right fences/walls to each side of the road. Then we fit planes to the road pointcloud and to both the left and right fences. We compute the intersection between the road plane with the left fence plane, and the intersection between the road plane and the right fence plane. We end up with two lines, and we can now decide on a depth at which we wish to compute the width of the road. 
 
 <p align="center">
-  <img src=assets/pipeline.pdf" alt="monodepth">
+  <img src=/assets/pipeline.pdf" alt="monodepth">
 </p>
+<object data="/assets/pipeline.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/assets/pipeline.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/assets/pipeline.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 
 This work was done as part of my Semesterarbeit (literally, semester work) at TUM's Chair of Automotive Technology. For more info on the pipeline, check my [thesis](assets/Pablo Rodriguez Palafox - Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of an Autonomous Vehicle.pdf).
