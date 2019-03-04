@@ -122,7 +122,7 @@ The source files for the semantic segmentation network are under the folder [fcn
 
 ### Pretrained Model for Semantic Segmentation on _fences_ and _road_
 
-Under request at pablo.rodriguez-palafox@tum.de 
+Under request at pablo.rodriguez-palafox@tum.de. See [models/get_sem_seg_models.md](models/get_sem_seg_models.md) for further details on how to get them.
 
 
 ### To test a model on the Roborace dataset's test set:
