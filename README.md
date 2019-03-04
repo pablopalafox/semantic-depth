@@ -3,8 +3,8 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 
 | | |
 |:-------------------------:|:-------------------------:|
-|<img alt="test_3" src="/assets/images/test_munich/test_3.png">  |  <img width="1604" alt="test_3_output" src="/assets/images/test_munich/test_3_output.png">|
-|<img width="1604" alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img width="1604" alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
+|<img alt="test_3" src="/assets/images/test_munich/test_3.png">  |  <img alt="test_3_output" src="/assets/images/test_munich/test_3_output.png">|
+|<img alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
 
 
 SemanticDepth is a deep learning-based computer vision pipeline that aims to improve situational awareness of an autonomous vehicle by computing the width of the road at a certain depth in front of the car. 
