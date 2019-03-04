@@ -89,7 +89,7 @@ We directly use the pre-trained model for Cityscapes, which you can get at the [
 
 ### Munich Test Set
 
-This is a set of 5 images of the streets of Munich on which you can test the whole pipeline. You can find it [here](data/test_images_munich). In section *Test on images*, you can find the commands on how to test our whole pipeline on these images.
+This is a set of 5 images of the streets of Munich on which you can test the whole pipeline. You can find it [here](data/test_images_munich). In section [Test on images](#test_pipeline), you can find the commands on how to test our whole pipeline on these images.
 
 
 
@@ -164,6 +164,7 @@ $ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
 ## 5. SemanticDepth - The whole pipeline
 SemanticDepth merges together semantic segmentation and monocular depth estimation to compute the distance from the left fence to the right fence in a FormulaE-like circuit. We have also found that by using a semantic segmentation model trained on Roborace images for fence and road classification plus a [monodepth](https://github.com/mrharicot/monodepth) model for disparity estimation, our pipeline generalizes to city environments, like those featured in our [Munich test set](data/test_images_munich)
 
+<a name="test_pipeline"></a>
 ### Test pipeline on our Munich test set
 
 By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths. By default, the list of focal lengths to try is '[380, 580]'. The reason behind trying different focal lengths is that we are using a monodepth model trained on the Cityscapes dataset, which comprises images with a certain focal lenght. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers.
