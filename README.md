@@ -3,8 +3,8 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 
 | | |
 |:-------------------------:|:-------------------------:|
-|<img width="1604" alt="" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">  blah |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|
-|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|
+|<img width="1604" alt="test_3" src="/assets/images/test_munich/test_3.png">  Test image number 3 from our Munich test set  |  <img width="1604" alt="test_3_output" src="/assets/images/test_munich/test_3_output.png">|
+|<img width="1604" alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img width="1604" alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
 
 
 SemanticDepth is a deep learning-based computer vision pipeline that aims to improve situational awareness of an autonomous vehicle by computing the width of the road at a certain depth in front of the car. 
