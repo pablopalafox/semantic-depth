@@ -36,31 +36,31 @@ This code was tested with Tensorflow 1.0, CUDA 8.0 and Ubuntu 16.04.
 Git clone this repo and change to the cloned dir:
 
 ```bash
-git clone
-cd semantic_depth
+$ git clone
+$ cd semantic_depth
 ```
 
 Using virtual environments is always a good idea. We will need to have pip and virtualenv installed.
 
 Install pip and virtualenv:
 
-`sudo apt-get install python3-pip python3.5-dev python-virtualenv`
+`$ sudo apt-get install python3-pip python3.5-dev python-virtualenv`
 
 You also need to install python3-tk:
 
-`sudo apt-get install python3-tk`
+`$ sudo apt-get install python3-tk`
 
 To create a new virtualenv, being inside the root directory of the cloned repository, run the following:
 
-`virtualenv --system-site-packages -p python3.5 .venv`
+`$ virtualenv --system-site-packages -p python3.5 .venv`
 
 We now have a python3.5 virtual environment (with all packages that you already had installed for your python3.5 installation). Activate the virtualenv like so:
 
-`source .venv/bin/activate`
+`$ source .venv/bin/activate`
 
 Inside the virtualenv, you can run:
 
-`pip install -r requirements.txt`
+`$ pip install -r requirements.txt`
 
 to get the dependencies needed.
 
@@ -103,8 +103,8 @@ Make sure that your virtulenv is activated. Otherwise, run the following inside 
 Then, change directories to 'fcn8s' and execute the 'fcn.py' file to train our FCN-8s implementation on a specified dataset (e.g., roborace750_mockup or Cityscapes) like so:
 
 ```bash
-cd fcn8s
-python fcn.py --dataset=roborace750_mockup --epochs=100
+$ cd fcn8s
+$ python fcn.py --dataset=roborace750_mockup --epochs=100
 ```
 
 
@@ -127,7 +127,7 @@ Check that you are inside the [fcn8s](fcn8s) directory.
 
 Within the virtual environment, run the following to inference on the test set of the dataset indicated in the '--dataset' argument by using a previously trained model, which will be asked automatically after running the following command:
 
-`python fcn.py --mode=test --dataset=roborace750`
+`$ python fcn.py --mode=test --dataset=roborace750`
 
 Enter the name of the model you want to use in the format '<epochs>-Epochs-<dataset>', e.g., `100-Epochs-roborace750`
 
@@ -148,9 +148,9 @@ We use the network developed by Godard et al., called [MonoDepth](https://github
 To download the [monodepth model](https://github.com/mrharicot/monodepth) trained on cityscapes by [Godard](https://github.com/mrharicot/monodepth), go to the [monodepth repo](https://github.com/mrharicot/monodepth) or run the following:
 
 ```bash
-cd models
-sudo chmod +x get_monodepth_model.sh
-./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
+$ cd models
+$ sudo chmod +x get_monodepth_model.sh
+$ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
 ``` 
 
 
@@ -161,7 +161,7 @@ SemanticDepth merges together semantic segmentation and monocular depth estimati
 
 By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths. By default, the list of focal lengths to try is '[380, 580]'. The reason behind trying different focal lengths is that we are using a monodepth model trained on the Cityscapes dataset, which comprises images with a certain focal lenght. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers.
 
-`python dist2fence_frame.py --save_data`
+`$ python dist2fence_frame.py --save_data`
 
 Results will be stored inside a newly created folder called *results*. Inside this folder, a folder *380* and a folder *580* will have been created, each containing the results relative to each of the 5 test images on which we have applied the pipeline. Also, a file _data.txt_ will have been generated, where every line refers to a test image except the last line. For every line (every test image), we save the following:
 
@@ -184,7 +184,7 @@ The rest of the files can be disregarded. They are only generated for sanity che
 
 Note that you can set the --verbose option when running the previous command to get more info during execution:
 
-`python dist2fence_frame.py --save_data --verbose`
+`$ python dist2fence_frame.py --save_data --verbose`
 
 
 #### Other functionalites
@@ -192,7 +192,7 @@ Note that you can set the --verbose option when running the previous command to 
 
 Note as well that running the python script without any arguments
 
-`python dist2fence_frame.py`
+`$ python dist2fence_frame.py`
 
 will just generate the following files:
 
@@ -204,7 +204,7 @@ So no backend info (i.e.., no 3D point clouds that we use behing the scenes to c
 
 Also, by running the following, SemanticDepth will be applied using the focal length set as param:
 
-`python dist2fence_frame.py --fov=360`
+`$ python dist2fence_frame.py --fov=360`
 
 Other params:
 
@@ -215,7 +215,7 @@ Other params:
 
 Download the Stuttgart sequence from [Cityscapes](https://www.cityscapes-dataset.com/login/). Extract all the _png_ images from the sequence (or just a subset of the sequence) into *data/stuttgart_video_test*. Then run:
 
-`python dist2fence_sequence_of_frames.py --verbose`
+`$ python dist2fence_sequence_of_frames.py --verbose`
 
 By default, the _naive distance_ will be computed, given that the Stuttgart sequence does not have walls/fences at each side of the road, as a Formula-E-like racetrack would, on which to compute our _advanced distance_.
 
