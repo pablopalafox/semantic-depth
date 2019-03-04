@@ -19,7 +19,7 @@ Second, an _advanced_ distance. Here we additionally extract the pointclouds cor
 	<img src="/assets/images/pipeline.png" alt="pipeline">
 </p>
 
-This work was done as part of my Semesterarbeit (literally, semester work) at TUM's Chair of Automotive Technology. For more info on the pipeline, check my [thesis](/assets/docs/semanticDepthPabloRodriguezPalafox.pdf).
+This work was done as part of my Semesterarbeit (literally, semester work) at TUM's Chair of Automotive Technology. For more info on the pipeline, check my [thesis](/assets/pdfs/semanticDepthPabloRodriguezPalafox.pdf).
 
 Author: [Pablo Rodriguez Palafox](https://pablorpalafox.github.io/)  
 Advisor: [Johannes Betz, M.Sc.](https://www.ftm.mw.tum.de/lehrstuhl/mitarbeiter/fahrdynamik/johannes-betz-m-sc/johannes-betz-m-sc/)   
