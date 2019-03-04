@@ -93,17 +93,18 @@ This is a set of 5 images of the streets of Munich on which you can test the who
 
 
 
+
 ## 3. Semantic Segmentation Network
 
 The source files for the semantic segmentation network are under the folder [fcn8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf). There you can find an implementation of an [FCN-8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf) semantic segmenatation architecture.
 
 ### To train a new model we need to:
 
-Make sure that your virtulenv is activated. Otherwise, run the following inside the root directory of your project (or wherever you have your virtual environment):
+* Make sure that your virtulenv is activated. Otherwise, run the following inside the root directory of your project (or wherever you have your virtual environment):
 
 `source .venv/bin/activate`
 
-Then, change directories to 'fcn8s' and execute the 'fcn.py' file to train our FCN-8s implementation on a specified dataset (e.g., roborace750_mockup or Cityscapes) like so:
+* Then, change directories to [fcn8s](fcn8s) and execute the **fcn.py** file to train our FCN-8s implementation on a specified dataset (e.g., roborace750_mockup or Cityscapes) like so:
 
 ```bash
 $ cd fcn8s
@@ -111,13 +112,13 @@ $ python fcn.py --dataset=roborace750_mockup --epochs=100
 ```
 
 
-After training is done, the following folders will have been created:
+* After training is done, the following folders will have been created:
 
-*../models/sem_seg*: contains the model which has been just trained
+    - **../models/sem_seg**: contains the model which has been just trained
 	
-*log*: contains logging info about training:
-    - loss vs epochs for training and validation sets
-    - IoU vs epochs for training and validation sets
+    - **log**: contains logging info about training:  
+        - loss vs epochs for training and validation sets
+        - IoU vs epochs for training and validation sets
 
 ### Pretrained Model for Semantic Segmentation on _fences_ and _road_
 
