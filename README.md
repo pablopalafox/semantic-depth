@@ -21,16 +21,11 @@ Second, an _advanced_ distance. Here we additionally extract the pointclouds cor
 
 This work was done as part of my Semesterarbeit (literally, semester work) at TUM's Chair of Automotive Technology. For more info on the pipeline, check my [thesis](/assets/Pablo Rodriguez Palafox - Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of an Autonomous Vehicle.pdf).
 
-Author: Pablo Rodriguez Palafox
-
-Advisor: Johannes Betz, M.Sc.
-
-Head of Chair of Automotive Technology: Univ.-Prof. Dr.-Ing. Markus Lienkamp
-
-Lehrstuhl für Fahrzeugtechnik
-
-Fakultät für Maschinenwesen
-
+Author: Pablo Rodriguez Palafox  
+Advisor: Johannes Betz, M.Sc.  
+Head of Chair of Automotive Technology: Univ.-Prof. Dr.-Ing. Markus Lienkamp  
+Lehrstuhl für Fahrzeugtechnik  
+Fakultät für Maschinenwesen  
 Technische Universität München
 
 
