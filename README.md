@@ -7,7 +7,7 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 |<img alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
 
 
-SemanticDepth is a deep learning-based computer vision pipeline that aims to improve situational awareness of an autonomous vehicle by computing the width of the road at a certain depth in front of the car. 
+SemanticDepth is a deep learning-based computer vision pipeline that computes the width of the road at a certain depth in front of a car. 
 
 It does so by fusing together two deep learning-based architectures, namely a semantic segmentation network ([fcn8-s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf)) and a monocular depth estimation network ([monodepth](https://github.com/mrharicot/monodepth))
 
@@ -15,12 +15,9 @@ We have two ways of computing the depth of the road at a certain depth. First, a
 
 Second, an _advanced_ distance. Here we additionally extract the pointclouds corresponding to hypothetical left and right fences/walls to each side of the road. Then we fit planes to the road pointcloud and to both the left and right fences. We compute the intersection between the road plane with the left fence plane, and the intersection between the road plane and the right fence plane. We end up with two lines, and we can now decide on a depth at which we wish to compute the width of the road. 
 
-<object data="/assets/pipeline.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="/assets/pipeline.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/assets/pipeline.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
-
+<p align="center">
+	<img src="/assets/images/pipeline.png" alt="pipeline">
+</p>
 
 This work was done as part of my Semesterarbeit (literally, semester work) at TUM's Chair of Automotive Technology. For more info on the pipeline, check my [thesis](assets/Pablo Rodriguez Palafox - Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of an Autonomous Vehicle.pdf).
 
