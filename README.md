@@ -13,7 +13,7 @@ It does so by fusing together two deep learning-based architectures, namely a se
 
 We have two ways of computing the depth of the road at a certain depth. First, a _naive_ way: we compute the pointcloud corresponding to the road in front of us and compute the distance between the furthest point to the left and the furthest point to the right (of this road pointcloud) at a certain depth (depth meaning the direction in front of us).
 
-Second, an _advanced_ distance. Here we additionally extract the pointclouds corresponding to hypothetical left and right fences/walls to each side of the road. Then we fit planes to the road pointcloud and to both the left and right fences. We compute the intersection between the road plane with the left fence plane, and the intersection between the road plane and the right fence plane. We end up with two lines, and we can now decide on a depth at which we wish to compute the width of the road. 
+Second, an _advanced_ distance. Here we additionally extract the pointclouds corresponding to hypothetical left and right fences/walls to each side of the road. Then we fit planes to the road pointcloud and to both the left and right fences. We compute the intersection between the road plane with the left fence plane, and the intersection between the road plane and the right fence plane. We end up with two intersected lines, and we can now decide on a depth at which we wish to compute the width of the road. 
 
 <p align="center">
 	<img src="/assets/images/pipeline.png" alt="pipeline">
@@ -33,6 +33,11 @@ Head of Chair of Automotive Technology: [Univ.-Prof. Dr.-Ing. Markus Lienkamp](h
 ## 1. Requirements (& Installation tips)
 This code was tested with Tensorflow 1.0, CUDA 8.0 and Ubuntu 16.04.
 
+First of, install python3-tk.
+
+`$ sudo apt-get install python3-tk`
+
+
 Git clone this repo and change to the cloned dir:
 
 ```bash
@@ -46,13 +51,10 @@ Install pip and virtualenv:
 
 `$ sudo apt-get install python3-pip python3.5-dev python-virtualenv`
 
-You also need to install python3-tk:
-
-`$ sudo apt-get install python3-tk`
 
 To create a new virtualenv, being inside the root directory of the cloned repository, run the following:
 
-`$ virtualenv --system-site-packages -p python3.5 .venv`
+`$ virtualenv --no-site-packages -p python3.5 .venv`
 
 We now have a python3.5 virtual environment (with all packages that you already had installed for your python3.5 installation). Activate the virtualenv like so:
 
@@ -72,7 +74,7 @@ to get the dependencies needed.
 
 We labeled 750 [Roborace](https://roborace.com/) images with the classes fence, road and background. For the task of labelling our own images, we used the [cityscapesScripts](https://github.com/mcordts/cityscapesScripts).
 
-We cannot make the whole dataset public, as the original images are property of the Roborace comptetion. A mockup of this dataset can be found [here](data/roborace750_mockup). 
+We cannot make the whole dataset public, as the original images are property of the [Roborace](https://roborace.com/) competition. A mockup of this dataset can be found [here](data/roborace750_mockup). 
 
 If you would like to get more images, join the [Roborace](https://roborace.com/) competition and you'll get data on which to run our work.
 
