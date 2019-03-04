@@ -30,7 +30,7 @@ Head of Chair of Automotive Technology: [Univ.-Prof. Dr.-Ing. Markus Lienkamp](h
 
 
 
-## Requirements (& Installation tips)
+## 1. Requirements (& Installation tips)
 This code was tested with Tensorflow 1.0, CUDA 8.0 and Ubuntu 16.04.
 
 Git clone this repo and change to the cloned dir:
@@ -66,7 +66,7 @@ to get the dependencies needed.
 
 
 
-## Datasets
+## 2. Datasets
 
 ### Datasets for Semantic Segmentation on classes _fence_ and _road_
 
@@ -90,7 +90,7 @@ This is a set of 5 images of the streets of Munich on which you can test the who
 
 
 
-## Semantic Segmentation Network
+## 3. Semantic Segmentation Network
 
 The source files for the semantic segmentation network are under the folder [fcn8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf). There you can find an implementation of an [FCN-8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf) semantic segmenatation architecture.
 
@@ -140,7 +140,7 @@ After testing is done, the following folder and files will have appeared in the 
 
 
 
-## Monocular Depth Estimation Network (monodepth)
+## 4. Monocular Depth Estimation Network (monodepth)
 We use the network developed by Godard et al., called [MonoDepth](https://github.com/mrharicot/monodepth) (Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.).
 
 ### Monodepth model (monocular depth estimation model trained on Cityscapes by [Godard]())
@@ -154,7 +154,7 @@ $ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
 ``` 
 
 
-## SemanticDepth
+## 5. SemanticDepth - The whole pipeline
 SemanticDepth merges together semantic segmentation and monocular depth estimation to compute the distance from the left fence to the right fence in a FormulaE-like circuit. We have also found that by using a semantic segmentation model trained on Roborace images for fence and road classification plus a [monodepth](https://github.com/mrharicot/monodepth) model for disparity estimation, our pipeline generalizes to city environments, like those featured in our [Munich test set](data/test_images_munich)
 
 ### Test pipeline on our Munich test set
@@ -225,7 +225,7 @@ You can then use the script _create_video_from_frames.py_ inside *utils* to conv
 
 
 
-## License
+## 6. License
 
 This work is largely based on the work of [Godard](https://github.com/mrharicot/monodepth), named MonoDepth. MonoDepth license information is stated below:
 
