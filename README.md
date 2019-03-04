@@ -116,7 +116,7 @@ The source files for the semantic segmentation network are under the folder [fcn
 
     - **../models/sem_seg**: contains the model which has been just trained
 	
-    - **log**: contains logging info about training:  
+    - **log** (inside [fcn8s](fcn8s)): contains logging info about training:  
         - loss vs epochs for training and validation sets
         - IoU vs epochs for training and validation sets
 
