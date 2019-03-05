@@ -92,7 +92,7 @@ This is a set of 5 images of the streets of Munich on which you can test the who
 
 
 ## 3. SemanticDepth - The whole pipeline
-SemanticDepth merges together semantic segmentation and monocular depth estimation to compute the distance from the left fence to the right fence in a FormulaE-like circuit. We have also found that by using a semantic segmentation model trained on Roborace images for fence and road classification plus a [monodepth](https://github.com/mrharicot/monodepth) model for disparity estimation, our pipeline generalizes to city environments, like those featured in our [Munich test set](data/test_images_munich)
+SemanticDepth merges together [semantic segmentation](#sem_seg) and [monocular depth estimation](#monodepth) to compute the distance from the left fence to the right fence in a FormulaE-like circuit. We have also found that by using a semantic segmentation model trained on Roborace images for fence and road classification plus a [monodepth](https://github.com/mrharicot/monodepth) model for disparity estimation, our pipeline generalizes to city environments, like those featured in our [Munich test set](data/test_images_munich)
 
 <a name="test_pipeline"></a>
 ### Test pipeline on our Munich test set
@@ -162,7 +162,7 @@ In the *results* folder you will a new folder named *stuttgart_video* containing
 You can then use the script _create_video_from_frames.py_ inside *utils* to convert the list of images that have been just created (*result_sequence_imgs*) into _mp4_ format.
 
 
-
+<a name="sem_seg"></a>
 ## 4. Semantic Segmentation Network
 
 The source files for the semantic segmentation network are under the folder [fcn8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf). There you can find an implementation of an [FCN-8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf) semantic segmenatation architecture.
@@ -212,11 +212,9 @@ After testing is done, the following folder and files will have appeared in the 
 *times.txt*: inference times for each image of the test set
 
 
-
+<a name="monodepth"></a>
 ## 5. Monocular Depth Estimation Network (monodepth)
 We use the network developed by Godard et al., called [MonoDepth](https://github.com/mrharicot/monodepth) (Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.).
-
-<a name="monodepth_model"></a>
 
 
 ### Monodepth model (monocular depth estimation model trained on Cityscapes by [Godard](https://github.com/mrharicot/monodepth))
