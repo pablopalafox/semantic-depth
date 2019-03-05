@@ -97,7 +97,7 @@ SemanticDepth merges together [semantic segmentation](#sem_seg) and [monocular d
 <a name="test_pipeline"></a>
 ### Test SemanticDepth on our Munich test set
 
-By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths. By default, the list of focal lengths to try is '[380, 580]'. The reason behind trying different focal lengths is that we are using a monodepth model trained on the Cityscapes dataset, which comprises images with a certain focal lenght. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers.
+By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a monodepth model trained on the Cityscapes dataset, which comprises images with a certain focal lenght. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers.
 
 `$ python dist2fence_frame.py --save_data`
 
