@@ -144,14 +144,14 @@ will just generate the following files:
 
 So no backend info (i.e., no 3D point clouds, which are just used in the backend to compute distances).
 
-Also, by running the following, SemanticDepth will be applied using the focal length set as param:
+Also, by running the following, SemanticDepth will be applied using the focal length provided as argument:
 
 `$ python dist2fence_frame.py --fov=360`
 
 Other params:
 
-*--input_frame=<pathToImage>*: If set, the pipeline will only be applied to the indicated image 
-*--aproach=both*: If set to _both_, naive and advanced approaches are used
+* `--input_frame=<pathToImage>`: If set, the pipeline will only be applied to the indicated image 
+* `--aproach=both`: If set to _both_, naive and advanced approaches are used
 
 ### Test SemanticDepth on the Stuttgart video sequence from Cityscapes
 
