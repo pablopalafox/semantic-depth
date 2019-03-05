@@ -240,7 +240,7 @@ $ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
 
 ## 6. License
 
-This work is largely based on the work of [Godard](https://github.com/mrharicot/monodepth), named MonoDepth. MonoDepth license information is stated below:
+This work is largely based on [MonoDepth](https://github.com/mrharicot/monodepth), work of [Godard et al.](https://github.com/mrharicot/monodepth). MonoDepth license information is stated below:
 
 ---
 
