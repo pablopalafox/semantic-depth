@@ -242,11 +242,13 @@ $ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
 
 This work is largely based on the work of [Godard](https://github.com/mrharicot/monodepth), named MonoDepth. MonoDepth license information is stated below:
 
+---
 
 Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.
 
 This Software is licensed under the terms of the UCLB ACP-A Licence which allows for non-commercial use only, the full terms of which are made available in the LICENSE file. For any other use of the software not covered by the terms of this licence, please contact info@uclb.com
 
+---
 
 From MonoDepth, we use the files *average_gradients.py*, *bilinear_sampler.py*, *monodepth_dataloader.py* and *monodepth_model.py*, which we have not modified in any way. You can find these files in the folder _monodepth_lib_. 
 
