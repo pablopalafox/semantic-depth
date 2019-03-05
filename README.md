@@ -103,7 +103,7 @@ By running the command below, SemanticDepth will be applied on the [Munich test 
 
 Results will be stored inside a newly created folder called **results**. Inside this folder, two more directories, namely **380** and **580**, will have been created, each containing the results relative to each of the 5 test images on which we have applied SemanticDepth. Also, a file _data.txt_ will have been generated, where every line refers to a test image except the last line. For every line (every test image), we save the following:
 
-`real_distance | dist_naive | dist_advanced | abs(real_distance-dist_naive) | abs(real_distance-dist_advanced)`
+`real_distance|dist_naive|dist_advanced|abs(real_distance-dist_naive)|abs(real_distance-dist_advanced)`
 
 The last line of this _data.txt_ contains the Mean Absolute Error for the absolute differences between the estimated distance and the real distance (at a depth of x meters - in our experiments, we set x = 10 m)
 
