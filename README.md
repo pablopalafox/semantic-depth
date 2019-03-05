@@ -7,7 +7,7 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 |<img alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
 
 <p align="center">
-	<img src="/assets/videos/result.mp4" alt="result_on_stuttgart_video">
+	<img src="/assets/images/result.gif" alt="result_on_stuttgart_video">
 </p>
 
 <a name="intro"></a>
@@ -206,11 +206,11 @@ Under request at pablo.rodriguez-palafox@tum.de. See [models/get_sem_seg_models.
 
 Check that you are inside the [fcn8s](fcn8s) directory.
 
-Within the virtual environment, run the following to inference on the test set of the dataset indicated in the '--dataset' argument by using a previously trained model, which will be asked automatically after running the following command:
+Within the virtual environment, execute the following to run inference on the test set of the dataset indicated in the `--dataset` argument by using a previously trained model, which will be asked automatically after running the following command:
 
-`$ python fcn.py --mode=test --dataset=roborace750`
+`$ python fcn.py --mode=test --dataset=roborace750_mockup`
 
-Enter the name of the model you want to use in the format '<epochs>-Epochs-<dataset>', e.g., `100-Epochs-roborace750`
+`Enter the name of the model you want to use in the format <epochs>-Epochs-<dataset>, e.g., 100-Epochs-roborace750`
 
 
 After testing is done, the following folder and files will have appeared in the same folder as the fcn.py file:
