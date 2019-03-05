@@ -97,9 +97,7 @@ SemanticDepth merges together [semantic segmentation](#sem_seg) and [monocular d
 <a name="test_pipeline"></a>
 ### Test SemanticDepth on our Munich test set
 
-By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths so that the best one can be found. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a [monodepth model trained on the Cityscapes dataset](#monodepth), and Cityscapes comprises images with a certain focal lenght. As the author (Godard) puts it in this [discussion](https://github.com/mrharicot/monodepth/issues/190), > > the behaviour is undefined with images which have different aspect ratios and focal lengths as those on which we trained the model, since the network really only saw one type of images. 
-
-Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers (see [discussion on the topic](https://github.com/mrharicot/monodepth/issues/190)).
+By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths so that the best one can be found. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a [monodepth model trained on the Cityscapes dataset](#monodepth), and Cityscapes comprises images with a certain focal lenght. As the author (Godard) puts it in this [discussion](https://github.com/mrharicot/monodepth/issues/190), the behaviour is undefined with images which have different aspect ratios and focal lengths as those on which we trained the model, since the network really only saw one type of images. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers (see [discussion on the topic](https://github.com/mrharicot/monodepth/issues/190)).
 
 `$ python dist2fence_frame.py --save_data`
 
