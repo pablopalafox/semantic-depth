@@ -111,15 +111,15 @@ The last line of this _data.txt_ contains the Mean Absolute Error for the absolu
 
 After having ran the previous python script with the `--save_data` argument set, we can now find the following inside the folders **380** and **580**:
 
-* **\*\_output.ply** contains the reconstructed 3D scene, featuring only the road, the walls and the naive and advanced distances (red and green lines). You can use [MeshLab](http://www.meshlab.net/) to open a PLY file.
+* **\*\_output.ply** contains the reconstructed 3D scene, featuring only the road, the walls and the [naive and advanced distances](#intro) (red and green lines). You can use [MeshLab](http://www.meshlab.net/) to open a PLY file.
 
-* **\*\_output.png** features the segmented scene with the computed distances at the top
+* **\*\_output.png** features the segmented scene with the computed distances at the top.
 
-* **\*\_output_dips.png** is the disparity map that [monodepth](https://github.com/mrharicot/monodepth) predicts for the given input image
+* **\*\_output_dips.png** is the disparity map that [monodepth](https://github.com/mrharicot/monodepth) predicts for the given input image.
 
-* **\*\_output_distances.txt** is a plain text file containing the predicted width of the road using both the naive and advanced approaches
+* **\*\_output_distances.txt** is a plain text file containing the predicted width of the road using both the [naive and advanced approaches](#intro).
 
-* **\*\_output_times.txt** is a plain text file containing the inference times for each task of the pipeline
+* **\*\_output_times.txt** is a plain text file containing the inference times for each task of the pipeline.
 
 The rest of the files can be disregarded. They are only generated for sanity checks.
 
