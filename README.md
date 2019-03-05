@@ -13,7 +13,7 @@ It does so by fusing together two deep learning-based architectures, namely a **
 
 We have two ways of computing the depth of the road at a certain depth. First, a __naive distance__. This results from computing the pointcloud corresponding to the road in front of us first and computing the distance between the furthest point to the left and the furthest point to the right (of this road pointcloud) at a certain depth later -- depth meaning the direction in front of us.
 
-Second, an __advanced distance__. Here we additionally extract the pointclouds corresponding to hypothetical left and right fences/walls to each side of the road. Then we fit planes to the road pointcloud and to both the left and right fences. We compute the intersection between the road plane with the left fence plane, and the intersection between the road plane and the right fence plane. We end up with two intersected lines, and we can now decide on a depth at which we wish to compute the width of the road. 
+Second, an __advanced distance__. Here we additionally extract the pointclouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the road pointcloud and to both the left and right fences. We compute the intersection between the road plane with the left fence plane, and the intersection between the road plane and the right fence plane. We end up with two intersected lines, and we can now decide on a depth at which we wish to compute the width of the road. 
 
 <p align="center">
 	<img src="/assets/images/pipeline.png" alt="pipeline">
