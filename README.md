@@ -151,7 +151,7 @@ Also, by running the following, SemanticDepth will be applied using the focal le
 Other params:
 
 * `--input_frame=<pathToImage>`: If set, the pipeline will only be applied to the indicated image 
-* `--aproach=both`: If set to _both_, naive and advanced approaches are used
+* `--aproach=both`: If set to _both_, naive and advanced approaches are used (the other option is _naive_).
 
 ### Test SemanticDepth on the Stuttgart video sequence from Cityscapes
 
@@ -161,9 +161,9 @@ Download the Stuttgart sequence from [Cityscapes](https://www.cityscapes-dataset
 
 By default, the _naive distance_ will be computed, given that the Stuttgart sequence does not have walls/fences at each side of the road, as a Formula-E-like racetrack would, on which to compute our _advanced distance_.
 
-In the *results* folder you will a new folder named *stuttgart_video* containing two other directories, namely *result_sequence_imgs* and *result_sequence_ply*. The former contains the output images with the computed distances written on the frame; the latter contains the masked 3D point cloud on which we compute the road's width at a certain depth.
+In the **results** folder (which will have been created in the root if you didn't have one yet) you will find a new folder named **stuttgart_video** containing two other directories, namely **result_sequence_imgs** and **result_sequence_ply**. The former contains the output images with the computed distances written on the frame; the latter contains the masked 3D point cloud on which we compute the road's width at a certain depth.
 
-You can then use the script _create_video_from_frames.py_ inside *utils* to convert the list of images that have been just created (*result_sequence_imgs*) into _mp4_ format.
+You can then use the script [_create_video_from_frames.py_](utils/create_video_from_frames.py) inside **utils** to convert the list of images that have been just created (**result_sequence_imgs**) into _mp4_ format.
 
 
 <a name="sem_seg"></a>
