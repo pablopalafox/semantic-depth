@@ -7,7 +7,7 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 |<img alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
 
 <p align="center">
-	<img src="/assets/images/result.gif" alt="result_on_stuttgart_video">
+	<img src="/assets/images/result_stuttgart.gif" alt="result_on_stuttgart_video">
 </p>
 
 <a name="intro"></a>
@@ -256,4 +256,6 @@ We do use a function (_post_process_disparity_) from the file *monodepth_simple.
 
 Furthermore, files [fcn8s/fcn.py](fcn8s/fcn.py) and [fcn8s/helper.py](fcn8s/helper.py) are based on the [FCN-8s implementation by Udacity](https://github.com/udacity/CarND-Semantic-Segmentation), released under the [MIT License](https://opensource.org/licenses/MIT).
 
-The rest of the files not mentioned above in this project are released under a [GPLv3 License](LICENSE).
+The rest of the files not mentioned above in this project are released under a [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+Check the [LICENSE](LICENSE) for a detailed explanation on all 3 licenses used in this work.
