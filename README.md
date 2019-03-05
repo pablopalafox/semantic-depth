@@ -111,7 +111,7 @@ The last line of this _data.txt_ contains the Mean Absolute Error for the absolu
 
 After having ran the previous python script with the `--save_data` argument set, we can now find the following inside the folders **380** and **580**:
 
-* \*\_output.ply* contains the reconstructed 3D scene, featuring only the road, the walls and the naive and advanced distances (red and green lines) [MeshLab is needed to open a PLY file]
+* **\*\_output.ply** contains the reconstructed 3D scene, featuring only the road, the walls and the naive and advanced distances (red and green lines) [MeshLab is needed to open a PLY file]
 
 * \*\_output.png* features the segmented scene with the computed distances at the top
 
