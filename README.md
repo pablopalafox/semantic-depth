@@ -252,8 +252,8 @@ This Software is licensed under the terms of the UCLB ACP-A Licence which allows
 
 From MonoDepth, we use the files *average_gradients.py*, *bilinear_sampler.py*, *monodepth_dataloader.py* and *monodepth_model.py*, which we have not modified in any way. You can find these files in the folder [monodepth_lib](monodepth_lib). 
 
-We do use a function (_post_process_disparity_) from the file *monodepth_simple.py* (which can be found in [monodepth](https://github.com/mrharicot/monodepth)'s repository) inside our files *dist2fence.py* and *dist2fence_cityscapes_sequence.py*.
+We do use a function (_post_process_disparity_) from the file *monodepth_simple.py* (which can be found in [monodepth](https://github.com/mrharicot/monodepth)'s repository) inside our files [dist2fence.py](dist2fence.py) and [dist2fence_cityscapes_sequence.py](dist2fence_cityscapes_sequence.py).
 
-Furthermore, files *fcn8s/fcn.py* and *fcn8s/helper.py* are based on the [FCN-8s implementation by Udacity](https://github.com/udacity/CarND-Semantic-Segmentation), released under the [MIT License](https://opensource.org/licenses/MIT).
+Furthermore, files [fcn8s/fcn.py](fcn8s/fcn.py) and [fcn8s/helper.py](fcn8s/helper.py) are based on the [FCN-8s implementation by Udacity](https://github.com/udacity/CarND-Semantic-Segmentation), released under the [MIT License](https://opensource.org/licenses/MIT).
 
 The rest of the files not mentioned above in this project are released under a [GPLv3 License](LICENSE).
