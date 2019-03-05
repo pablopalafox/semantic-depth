@@ -80,7 +80,7 @@ Another option is training on [Cityscapes](https://www.cityscapes-dataset.com/) 
 
 ### Datasets for Monocular Depth Estimation
 
-[MonoDepth](https://github.com/mrharicot/monodepth), an unsupervised single image depth prediction network that we make use of in our work, can be trained on Kitty or Cityscapes.
+[MonoDepth](https://github.com/mrharicot/monodepth), an unsupervised single image depth prediction network that we make use of in our work, can be trained on [Kitti](http://www.cvlibs.net/datasets/kitti/eval_depth_all.php) or [Cityscapes](https://www.cityscapes-dataset.com/).
 
 We directly use the pre-trained model for Cityscapes, which you can get at the [monodepth](https://github.com/mrharicot/monodepth) repo, at the Models section. Alternatively, follow the instructions in section [Monodepth model](#monodepth_model).
 
@@ -91,76 +91,7 @@ This is a set of 5 images of the streets of Munich on which you can test the who
 
 
 
-
-## 3. Semantic Segmentation Network
-
-The source files for the semantic segmentation network are under the folder [fcn8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf). There you can find an implementation of an [FCN-8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf) semantic segmenatation architecture.
-
-### To train a new model we need to:
-
-* Make sure that your virtulenv is activated. Otherwise, run the following inside the root directory of your project (or wherever you have your virtual environment):
-
-    `source .venv/bin/activate`
-
-* Then, change directories to [fcn8s](fcn8s) and execute the **fcn.py** file to train our FCN-8s implementation on a specified dataset (e.g., roborace750_mockup or Cityscapes) like so:
-
-    ```bash
-    $ cd fcn8s
-    $ python fcn.py --dataset=roborace750_mockup --epochs=100
-    ```
-
-
-* After training is done, the following folders will have been created:
-
-    - **../models/sem_seg**: contains the model which has been just trained
-	
-    - **log** (inside [fcn8s](fcn8s)): contains logging info about training:  
-        - loss vs epochs for training and validation sets
-        - IoU vs epochs for training and validation sets
-
-### Pretrained Model for Semantic Segmentation on _fences_ and _road_
-
-Under request at pablo.rodriguez-palafox@tum.de. See [models/get_sem_seg_models.md](models/get_sem_seg_models.md) for further details on how to get them.
-
-
-### To test a model on the Roborace dataset's test set:
-
-Check that you are inside the [fcn8s](fcn8s) directory.
-
-Within the virtual environment, run the following to inference on the test set of the dataset indicated in the '--dataset' argument by using a previously trained model, which will be asked automatically after running the following command:
-
-`$ python fcn.py --mode=test --dataset=roborace750`
-
-Enter the name of the model you want to use in the format '<epochs>-Epochs-<dataset>', e.g., `100-Epochs-roborace750`
-
-
-After testing is done, the following folder and files will have appeared in the same folder as the fcn.py file:
-
-*runs*: contains the segmented images
-*log/<nameOfTheModelUsed>/iou/test_set_iou_<timestamp>.txt*: contains the IoU metric for each image of the test set
-*times.txt*: inference times for each image of the test set
-
-
-
-## 4. Monocular Depth Estimation Network (monodepth)
-We use the network developed by Godard et al., called [MonoDepth](https://github.com/mrharicot/monodepth) (Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.).
-
-<a name="monodepth_model"></a>
-
-
-### Monodepth model (monocular depth estimation model trained on Cityscapes by [Godard](https://github.com/mrharicot/monodepth))
-
-
-To download the [monodepth model](https://github.com/mrharicot/monodepth) trained on cityscapes by [Godard](https://github.com/mrharicot/monodepth), go to the [monodepth repo](https://github.com/mrharicot/monodepth) or run the following:
-
-```bash
-$ cd models
-$ sudo chmod +x get_monodepth_model.sh
-$ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
-``` 
-
-
-## 5. SemanticDepth - The whole pipeline
+## 3. SemanticDepth - The whole pipeline
 SemanticDepth merges together semantic segmentation and monocular depth estimation to compute the distance from the left fence to the right fence in a FormulaE-like circuit. We have also found that by using a semantic segmentation model trained on Roborace images for fence and road classification plus a [monodepth](https://github.com/mrharicot/monodepth) model for disparity estimation, our pipeline generalizes to city environments, like those featured in our [Munich test set](data/test_images_munich)
 
 <a name="test_pipeline"></a>
@@ -229,6 +160,75 @@ By default, the _naive distance_ will be computed, given that the Stuttgart sequ
 In the *results* folder you will a new folder named *stuttgart_video* containing two other directories, namely *result_sequence_imgs* and *result_sequence_ply*. The former contains the output images with the computed distances written on the frame; the latter contains the masked 3D point cloud on which we compute the road's width at a certain depth.
 
 You can then use the script _create_video_from_frames.py_ inside *utils* to convert the list of images that have been just created (*result_sequence_imgs*) into _mp4_ format.
+
+
+
+## 4. Semantic Segmentation Network
+
+The source files for the semantic segmentation network are under the folder [fcn8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf). There you can find an implementation of an [FCN-8s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf) semantic segmenatation architecture.
+
+### To train a new model we need to:
+
+* Make sure that your virtulenv is activated. Otherwise, run the following inside the root directory of your project (or wherever you have your virtual environment):
+
+    `source .venv/bin/activate`
+
+* Then, change directories to [fcn8s](fcn8s) and execute the **fcn.py** file to train our FCN-8s implementation on a specified dataset (e.g., roborace750_mockup or Cityscapes) like so:
+
+    ```bash
+    $ cd fcn8s
+    $ python fcn.py --dataset=roborace750_mockup --epochs=100
+    ```
+
+
+* After training is done, the following folders will have been created:
+
+    - **../models/sem_seg**: contains the model which has been just trained
+	
+    - **log** (inside [fcn8s](fcn8s)): contains logging info about training:  
+        - loss vs epochs for training and validation sets
+        - IoU vs epochs for training and validation sets
+
+### Pretrained Model for Semantic Segmentation on _fences_ and _road_
+
+Under request at pablo.rodriguez-palafox@tum.de. See [models/get_sem_seg_models.md](models/get_sem_seg_models.md) for further details on how to get them.
+
+
+### Test a model on the Roborace dataset's test set:
+
+Check that you are inside the [fcn8s](fcn8s) directory.
+
+Within the virtual environment, run the following to inference on the test set of the dataset indicated in the '--dataset' argument by using a previously trained model, which will be asked automatically after running the following command:
+
+`$ python fcn.py --mode=test --dataset=roborace750`
+
+Enter the name of the model you want to use in the format '<epochs>-Epochs-<dataset>', e.g., `100-Epochs-roborace750`
+
+
+After testing is done, the following folder and files will have appeared in the same folder as the fcn.py file:
+
+*runs*: contains the segmented images
+*log/<nameOfTheModelUsed>/iou/test_set_iou_<timestamp>.txt*: contains the IoU metric for each image of the test set
+*times.txt*: inference times for each image of the test set
+
+
+
+## 5. Monocular Depth Estimation Network (monodepth)
+We use the network developed by Godard et al., called [MonoDepth](https://github.com/mrharicot/monodepth) (Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.).
+
+<a name="monodepth_model"></a>
+
+
+### Monodepth model (monocular depth estimation model trained on Cityscapes by [Godard](https://github.com/mrharicot/monodepth))
+
+
+To download the [monodepth model](https://github.com/mrharicot/monodepth) trained on cityscapes by [Godard](https://github.com/mrharicot/monodepth), go to the [monodepth repo](https://github.com/mrharicot/monodepth) or run the following:
+
+```bash
+$ cd models
+$ sudo chmod +x get_monodepth_model.sh
+$ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
+``` 
 
 
 
