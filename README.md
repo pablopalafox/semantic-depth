@@ -124,7 +124,7 @@ After having ran the previous python script with the `--save_data` argument set,
 The rest of the files can be disregarded. They are only generated for sanity checks.
 
 
-Note that you can set the --verbose option when running the previous command to get more info during execution:
+Note that you can set the `--verbose` option when running the previous command to get more info during execution, like so:
 
 `$ python dist2fence_frame.py --save_data --verbose`
 
@@ -138,11 +138,11 @@ Note as well that running the python script without any arguments
 
 will just generate the following files:
 
-*\*_output_distances.txt* is a plain text file containing the predicted width of the road using both the naive and advanced approaches
+* **\*\_output_distances.txt** is a plain text file containing the predicted width of the road using both the naive and advanced approaches.
 
-*\*_output_times.txt* is a plain text file containing the inference times for each task of the pipeline
+* **\*\_output_times.txt** is a plain text file containing the inference times for each task of the pipeline.
 
-So no backend info (i.e.., no 3D point clouds that we use behing the scenes to compute distances).
+So no backend info (i.e., no 3D point clouds, which are just used in the backend to compute distances).
 
 Also, by running the following, SemanticDepth will be applied using the focal length set as param:
 
