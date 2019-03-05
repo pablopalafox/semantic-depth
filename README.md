@@ -82,7 +82,7 @@ Another option is training on [Cityscapes](https://www.cityscapes-dataset.com/) 
 
 [MonoDepth](https://github.com/mrharicot/monodepth), an unsupervised single image depth prediction network that we make use of in our work, can be trained on [Kitti](http://www.cvlibs.net/datasets/kitti/eval_depth_all.php) or [Cityscapes](https://www.cityscapes-dataset.com/).
 
-We directly use the pre-trained model for Cityscapes, which you can get at the [monodepth](https://github.com/mrharicot/monodepth) repo, at the Models section. Alternatively, follow the instructions in section [Monodepth model](#monodepth_model).
+We directly use the pre-trained model for Cityscapes, which you can get at the [monodepth](https://github.com/mrharicot/monodepth) repo, at the Models section. Alternatively, follow the instructions in section [Monodepth model](#monodepth).
 
 
 ### Munich Test Set
