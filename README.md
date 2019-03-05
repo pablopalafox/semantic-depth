@@ -215,9 +215,9 @@ Within the virtual environment, execute the following to run inference on the te
 
 After testing is done, the following folder and files will have appeared in the same folder as the fcn.py file:
 
-*runs*: contains the segmented images
-*log/<nameOfTheModelUsed>/iou/test_set_iou_<timestamp>.txt*: contains the IoU metric for each image of the test set
-*times.txt*: inference times for each image of the test set
+* **runs**: contains the segmented images
+* **log/<nameOfTheModelUsed>/iou/test_set_iou_<timestamp>.txt**: contains the IoU metric for each image of the test set
+* **times.txt**: inference times for each image of the test set
 
 
 <a name="monodepth"></a>
