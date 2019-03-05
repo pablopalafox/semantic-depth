@@ -6,7 +6,7 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 |<img alt="test_3" src="/assets/images/test_munich/test_3.png">  |  <img alt="test_3_output" src="/assets/images/test_munich/test_3_output.png">|
 |<img alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
 
-
+<a name="intro"></a>
 SemanticDepth is a deep learning-based computer vision pipeline that computes the width of the road at a certain depth in front of a car. 
 
 It does so by fusing together two deep learning-based architectures, namely a **semantic segmentation** network ([fcn8-s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf)) and a **monocular depth estimation** network ([monodepth](https://github.com/mrharicot/monodepth))
@@ -99,13 +99,15 @@ SemanticDepth merges together [semantic segmentation](#sem_seg) and [monocular d
 
 By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths so that the best one can be found. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a [monodepth model trained on the Cityscapes dataset](#monodepth), and Cityscapes comprises images with a certain focal lenght. As the author (Godard) puts it in this [discussion](https://github.com/mrharicot/monodepth/issues/190), the behaviour is undefined with images which have different aspect ratios and focal lengths as those on which we trained the model, since the network really only saw one type of images. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers (see [discussion on the topic](https://github.com/mrharicot/monodepth/issues/190)).
 
+
+
 `$ python dist2fence_frame.py --save_data`
 
 Results will be stored inside a newly created folder called **results**. Inside this folder, two more directories, namely **380** and **580**, will have been created, each containing the results relative to each of the 5 test images on which we have applied SemanticDepth. Also, a file _data.txt_ will have been generated, where every line refers to a test image except the last line. For every line (every test image), we save the following:
 
 `real_distance|dist_naive|dist_advanced|abs(real_distance-dist_naive)|abs(real_distance-dist_advanced)`
 
-The last line of this _data.txt_ contains the Mean Absolute Error for the absolute differences between the estimated distance and the real distance (at a depth of x meters - in our experiments, we set x = 10 m)
+The last line of this _data.txt_ contains the Mean Absolute Error for the absolute differences between the estimated distance and the real distance at a depth of x meters -- in our experiments, we set x = 10 m. We compute the MAE both for the naive and the advanced approaches (see the [Introduction](#intro) for an explanation on these two approaches).
 
 *\*_output.ply* contains the reconstructed 3D scene, featuring only the road, the walls and the naive and advanced distances (red and green lines) [MeshLab is needed to open a PLY file]
 
