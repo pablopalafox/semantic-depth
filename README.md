@@ -9,7 +9,7 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 
 SemanticDepth is a deep learning-based computer vision pipeline that computes the width of the road at a certain depth in front of a car. 
 
-It does so by fusing together two deep learning-based architectures, namely a semantic segmentation network ([fcn8-s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf)) and a monocular depth estimation network ([monodepth](https://github.com/mrharicot/monodepth))
+It does so by fusing together two deep learning-based architectures, namely a **semantic segmentation** network ([fcn8-s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf)) and a **monocular depth estimation** network ([monodepth](https://github.com/mrharicot/monodepth))
 
 We have two ways of computing the depth of the road at a certain depth. First, a _naive_ way: we compute the pointcloud corresponding to the road in front of us and compute the distance between the furthest point to the left and the furthest point to the right (of this road pointcloud) at a certain depth (depth meaning the direction in front of us).
 
@@ -72,13 +72,11 @@ to get the [dependencies](requirements.txt) needed.
 
 ### Datasets for Semantic Segmentation on classes _fence_ and _road_
 
-We labeled 750 [Roborace](https://roborace.com/) images with the classes fence, road and background. For the task of labelling our own images, we used the [cityscapesScripts](https://github.com/mcordts/cityscapesScripts).
+For the semantic segmentation task, we labeled 750 [Roborace](https://roborace.com/) images with the classes fence, road and background. For the task of labelling our own images, we used the [cityscapesScripts](https://github.com/mcordts/cityscapesScripts).
 
-We cannot make the whole dataset public, as the original images are property of the [Roborace](https://roborace.com/) competition. A mockup of this dataset can be found [here](data/roborace750_mockup). 
+We cannot make the whole dataset public, as the original images are property of the [Roborace](https://roborace.com/) competition. A mockup of this dataset can be found [here](data/roborace750_mockup). It fpllows the same structure as the Cityscapes dataset. If you would like to get more images, join the [Roborace](https://roborace.com/) competition and you'll get tons of data from the racetracks.
 
-If you would like to get more images, join the [Roborace](https://roborace.com/) competition and you'll get data on which to run our work.
-
-For the semantic segmentation task, another option is that you just train on [Kitti Semantic Segmentation dataset](http://www.cvlibs.net/datasets/kitti/eval_semseg.php?benchmark=semantics2015) or on [Cityscapes](https://www.cityscapes-dataset.com/) and then mask out pixels belonging to fences and roads from the images you segment using a trained model on the mentioned datasets. 
+Another option is training on [Cityscapes](https://www.cityscapes-dataset.com/) on the classes _fence_ and _road_ (and _background_). If your goal is participating in the Roborace competition, doing this can get you decent results when running inference on Roborace images.
 
 ### Datasets for Monocular Depth Estimation
 
