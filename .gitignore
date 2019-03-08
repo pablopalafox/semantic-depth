@@ -9,3 +9,4 @@ fcn8s/times.txt
 media
 results
 .venv
+*.DS_Store

@@ -477,7 +477,7 @@ class DepthFrame():
         print("Monodepth model successfully restored!")
 
 
-    def post_process_disparity(self, disp):
+    def post_processing(self, disp):
         _, h, w = disp.shape
         l_disp = disp[0,:,:]
         r_disp = np.fliplr(disp[1,:,:])
@@ -497,7 +497,7 @@ class DepthFrame():
 
         with self.graph_depth.as_default():
             disp = self.sess.run(self.model.disp_left_est[0], feed_dict={self.left: input_frames})
-        disp_pp = self.post_process_disparity(disp.squeeze()).astype(np.float32)
+        disp_pp = self.post_processing(disp.squeeze()).astype(np.float32)
 
         return disp_pp
 
