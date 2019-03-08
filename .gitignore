@@ -11,3 +11,5 @@ media
 results
 .venv
 *.DS_Store
+README_old.md
+.gitignore

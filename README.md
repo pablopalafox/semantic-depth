@@ -240,22 +240,8 @@ $ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
 
 ## 6. License
 
-This work is largely based on [MonoDepth](https://github.com/mrharicot/monodepth), work of [Godard et al.](https://github.com/mrharicot/monodepth). MonoDepth license information is stated below:
-
----
-
-Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.
-
-This Software is licensed under the terms of the UCLB ACP-A Licence which allows for non-commercial use only, the full terms of which are made available in the LICENSE file. For any other use of the software not covered by the terms of this licence, please contact info@uclb.com
-
----
-
-From MonoDepth, we use the files *average_gradients.py*, *bilinear_sampler.py*, *monodepth_dataloader.py* and *monodepth_model.py*, which we have not modified in any way. You can find these files in the folder [monodepth_lib](monodepth_lib). 
-
-We do use a function (_post_process_disparity_) from the file *monodepth_simple.py* (which can be found in [monodepth](https://github.com/mrharicot/monodepth)'s repository) inside our files [dist2fence.py](dist2fence.py) and [dist2fence_cityscapes_sequence.py](dist2fence_cityscapes_sequence.py).
-
-Furthermore, files [fcn8s/fcn.py](fcn8s/fcn.py) and [fcn8s/helper.py](fcn8s/helper.py) are based on the [FCN-8s implementation by Udacity](https://github.com/udacity/CarND-Semantic-Segmentation), released under the [MIT License](https://opensource.org/licenses/MIT).
+Files [fcn8s/fcn.py](fcn8s/fcn.py) and [fcn8s/helper.py](fcn8s/helper.py) are based on the [FCN-8s implementation by Udacity](https://github.com/udacity/CarND-Semantic-Segmentation), released under the [MIT License](https://opensource.org/licenses/MIT).
 
 The rest of the files not mentioned above in this project are released under a [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-Check the [LICENSE](LICENSE) for a detailed explanation on all 3 licenses used in this work.
+Check the [LICENSE](LICENSE) for a detailed explanation on the licenses under which this work is released.
