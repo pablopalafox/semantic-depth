@@ -161,7 +161,7 @@ Other params:
 
 Download the Stuttgart sequence from [Cityscapes](https://www.cityscapes-dataset.com/login/). Extract all the _png_ images from the sequence (or just a subset of the sequence) into *data/stuttgart_video_test*. Then run:
 
-`$ python dist2fence_sequence_of_frames.py --verbose`
+`$ python dist2fence_cityscapes_sequence.py --verbose`
 
 By default, the _naive distance_ will be computed, given that the Stuttgart sequence does not have walls/fences at each side of the road, as a Formula-E-like racetrack would, on which to compute our _advanced distance_.
 

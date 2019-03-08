@@ -1,5 +1,6 @@
 data/roborace750
 data/vgg
+data/stuttgart_video_test
 models/sem_seg
 models/monodepth
 __pycache__/
