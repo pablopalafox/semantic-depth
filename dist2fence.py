@@ -1,18 +1,4 @@
-# ----------------------------------------------------------------------------- #
-# NOTE: Parts of this file (function 'post_process_disparity') belongs to the
-# MonoDepth Software, whose license information is copied here:
-
-# Copyright UCL Business plc 2017. Patent Pending. All rights reserved.
-#
-# The MonoDepth Software is licensed under the terms of the UCLB ACP-A licence
-# which allows for non-commercial use only, the full terms of which are made
-# available in the LICENSE file.
-#
-# For any other use of the software not covered by the UCLB ACP-A Licence,
-# please contact info@uclb.com
-# ----------------------------------------------------------------------------- #
-
-# The rest of the file is licensed under a GPLv3 License.
+# This file is licensed under a GPLv3 License.
 #
 # GPLv3 License
 # Copyright (C) 2018-2019 Pablo R. Palafox (pablo.rodriguez-palafox@tum.de)
@@ -587,7 +573,7 @@ class DepthFrame():
         print("Monodepth model successfully restored!")
 
 
-    def post_process_disparity(self, disp):
+    def post_processing(self, disp):
         _, h, w = disp.shape
         l_disp = disp[0,:,:]
         r_disp = np.fliplr(disp[1,:,:])
@@ -607,7 +593,7 @@ class DepthFrame():
 
         with self.graph_depth.as_default():
             disp = self.sess.run(self.model.disp_left_est[0], feed_dict={self.left: input_frames})
-        disp_pp = self.post_process_disparity(disp.squeeze()).astype(np.float32)
+        disp_pp = self.post_processing(disp.squeeze()).astype(np.float32)
 
         return disp_pp
 
