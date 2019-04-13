@@ -2,16 +2,28 @@ import os
 import cv2
 import glob
 
+# input_paths = ["../results/stuttgart_video/result_sequence_imgs/*.png", 
+# 				"../results/stuttgart_video/rendered_sequence_top/*.png",
+# 				"../results/stuttgart_video/rendered_sequence_good_frontal/*.png"]
 
-input_path = "results/stuttgart_video/result_sequence_imgs/*.png"
-output_path = "results/stuttgart_video/result.mp4"
+# output_paths = ["../results/stuttgart_video/result_imgs.mp4", 
+# 				"../results/stuttgart_video/result_top_render.mp4", 
+# 				"../results/stuttgart_video/result_frontal_render.mp4"]
 
-test_frame = cv2.imread("media/videos/stuttgart_video/stuttgart_02_000000_005102_leftImg8bit.png")
-height, width = test_frame.shape[0], test_frame.shape[1]
+input_paths = ["../results/stuttgart_video/rendered_sequence_top/*.png"]
 
-video = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*"mp4v"), 30, (width, height))
+output_paths = ["../results/stuttgart_video/result_top_render.mp4"]
 
+for i in range(len(input_paths)):
+	print("Reading from", input_paths[i])
 
-for frame_path in sorted(glob.glob(input_path)):
-    frame = cv2.imread(frame_path)
-    video.write(frame)
+	test_frame = cv2.imread("../results/stuttgart_video/rendered_sequence_good_frontal/stuttgart_02_000000_005100_leftImg8bit_naive.png")
+	height, width = test_frame.shape[0], test_frame.shape[1]
+	print(height, width)
+
+	video = cv2.VideoWriter(output_paths[i], cv2.VideoWriter_fourcc(*"mp4v"), 30, (width, height))
+
+	for frame_path in sorted(glob.glob(input_paths[i])):
+	    frame = cv2.imread(frame_path)
+	    video.write(frame)
+	print("Done", input_paths[i])

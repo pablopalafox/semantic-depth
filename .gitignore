@@ -13,3 +13,6 @@ results
 *.DS_Store
 README_old.md
 .gitignore
+*.json
+.open3d
+data/stuttgart_tmp

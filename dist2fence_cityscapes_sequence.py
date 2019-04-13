@@ -61,13 +61,41 @@ import cv2
 import glob
 
 #----
-from thirdparty.monodepth_lib.monodepth_model import *
-from thirdparty.monodepth_lib.monodepth_dataloader import *
-from thirdparty.monodepth_lib.average_gradients import *
+from monodepth_lib.monodepth_model import *
+from monodepth_lib.monodepth_dataloader import *
+from monodepth_lib.average_gradients import *
 #----
 
-from semantic_depth_lib.point_cloud_2_ply   import PointCloud2Ply
+from semantic_depth_lib.point_cloud_2_ply import PointCloud2Ply
 import semantic_depth_lib.pcl as pcl
+
+from open3d import *
+
+def display_inlier_outlier(cloud, ind):
+    inlier_cloud = select_down_sample(cloud, ind)
+    outlier_cloud = select_down_sample(cloud, ind, invert=True)
+
+    print("Showing outliers (red) and inliers (gray): ")
+    outlier_cloud.paint_uniform_color([1, 0, 0])
+    inlier_cloud.paint_uniform_color([0.8, 0.8, 0.8])
+    draw_geometries([inlier_cloud, outlier_cloud])
+
+def render_plys(pcd, png_file):
+
+    vis = Visualizer()
+    vis.create_window()
+    ctr = vis.get_view_control()
+    
+    param = read_pinhole_camera_parameters("intrinsics_rendering.json")
+    
+    vis.add_geometry(pcd)
+    ctr.convert_from_pinhole_camera_parameters(param)
+
+    
+    image = vis.capture_screen_float_buffer(True)
+    plt.imsave(png_file, np.asarray(image), dpi = 1)    
+
+    vis.destroy_window()
 
 '''
 Class for processing frames
@@ -87,7 +115,7 @@ class FrameProcessor():
         self.verbose           = verbose
 
     def process_frame(self, input_frame, output_name,
-                      result_images_dir, result_ply_dir):
+                      result_images_dir, result_ply_dir, rendered_ply_dir):
 
         print("\n\nPROCESSING NEW FRAME! \n")
 
@@ -159,21 +187,56 @@ class FrameProcessor():
                                                               axis=1, 
                                                               threshold=5.0, 
                                                               plane_color=[200, 200, 200])
-        
+
+        # read into open3d 
+        road3D_pcd = PointCloud()
+        road3D_pcd.points = Vector3dVector(road3D)
+        road3D_pcd.colors = Vector3dVector(road_colors)
+        # write_point_cloud("test_road.ply", road3D_pcd)
+
+        # remove some more outliers
+        print("Statistical oulier removal")
+        cl,ind = statistical_outlier_removal(road3D_pcd,
+            nb_neighbors=10, std_ratio=0.5)
+        inlier_cloud = select_down_sample(road3D_pcd, ind)
+
+        #inlier_cloud.paint_uniform_color([0.8, 0.8, 0.8])
+        #draw_geometries([inlier_cloud])
+
+        print("Radius oulier removal")
+        cl,ind = radius_outlier_removal(inlier_cloud,
+            nb_points=80, radius=0.5)
+
+        inlier_cloud = select_down_sample(inlier_cloud, ind)
+
+        #inlier_cloud.paint_uniform_color([0.8, 0.8, 0.8])
+        #draw_geometries([inlier_cloud])
+
+        #display_inlier_outlier(inlier_cloud, ind)
+
+        # go back to numpy array
+        road3D = np.asarray(inlier_cloud.points)
+        road_colors = np.asarray(inlier_cloud.colors)
+
+
         #################################################################################
         ####################### NAIVE APPROACH ##########################################
         #   Get 3D points that define a horizontal line at a certain depth
         left_pt_naive, right_pt_naive = pcl.get_end_points_of_road(road3D, 
                                                                    self.depth-0.02)
-        # np.savez('{}_nai.npz'.format(self.output_name),
-        #          left_pt_naive=left_pt_naive, right_pt_naive=right_pt_naive)
-        #dist_naive = pcl.compute_distance_in_3D(left_pt_naive, right_pt_naive)
-        dist_naive = abs(left_pt_naive[0][0] - right_pt_naive[0][0])
-        if self.verbose:
-            print("Road width", dist_naive)
-        line_naive, colors_line_naive = pcl.create_3Dline_from_3Dpoints(left_pt_naive, 
-                                                                        right_pt_naive,
-                                                                        [250,0,0])
+
+        line_found = False
+        if left_pt_naive is not None and right_pt_naive is not None:
+            line_found = True
+            # np.savez('{}_nai.npz'.format(self.output_name),
+            #          left_pt_naive=left_pt_naive, right_pt_naive=right_pt_naive)
+            #dist_naive = pcl.compute_distance_in_3D(left_pt_naive, right_pt_naive)
+            dist_naive = abs(left_pt_naive[0][0] - right_pt_naive[0][0])
+            if self.verbose:
+                print("Road width", dist_naive)
+            line_naive, colors_line_naive = pcl.create_3Dline_from_3Dpoints(left_pt_naive, 
+                                                                            right_pt_naive,
+                                                                            [250,0,0])
 
         if self.approach == 'both':
             tic_fences = time.time()
@@ -240,26 +303,31 @@ class FrameProcessor():
         thickness = int(0.0035 * h) 
         fontScale = int(0.001  * h)
 
-        cv2.rectangle(self.segmented_frame,(0,0),(w, int(0.2*h)),(156, 157, 159), -1)
-        cv2.putText(self.segmented_frame, 'At {:.2f} m depth:'.format(self.depth),
-                    (int(0.36*w), int(0.035*h)),
-                    fontFace = 16, fontScale = fontScale+0.2, color=(255,255,255), thickness = thickness)
-        if self.approach == 'advanced' or self.approach == 'both':
-            cv2.putText(self.segmented_frame, '{:.2f} m to left fence'.format(-left_pt_advanced[0][0]), 
-                        (int(0.05*w), int(0.08*h)),
+        if line_found:
+            cv2.rectangle(self.segmented_frame,(0,0),(w, int(0.2*h)),(156, 157, 159), -1)
+            cv2.putText(self.segmented_frame, 'At {:.2f} m depth:'.format(self.depth),
+                        (int(0.36*w), int(0.035*h)),
+                        fontFace = 16, fontScale = fontScale+0.2, color=(255,255,255), thickness = thickness)
+            if self.approach == 'advanced' or self.approach == 'both':
+                cv2.putText(self.segmented_frame, '{:.2f} m to left fence'.format(-left_pt_advanced[0][0]), 
+                            (int(0.05*w), int(0.08*h)),
+                            fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
+                cv2.putText(self.segmented_frame, '{:.2f} m to right fence'.format(right_pt_advanced[0][0]), 
+                            (int(0.6*w), int(0.08*h)),
+                            fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
+            cv2.putText(self.segmented_frame, '{:.2f} m to road\'s left end'.format(-left_pt_naive[0][0]), 
+                        (int(0.05*w), int(0.13*h)),
                         fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
-            cv2.putText(self.segmented_frame, '{:.2f} m to right fence'.format(right_pt_advanced[0][0]), 
-                        (int(0.6*w), int(0.08*h)),
+            cv2.putText(self.segmented_frame, '{:.2f} m to road\'s right end'.format(right_pt_naive[0][0]), 
+                        (int(0.6*w), int(0.13*h)),
                         fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
-        cv2.putText(self.segmented_frame, '{:.2f} m to road\'s left end'.format(-left_pt_naive[0][0]), 
-                    (int(0.05*w), int(0.13*h)),
-                    fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
-        cv2.putText(self.segmented_frame, '{:.2f} m to road\'s right end'.format(right_pt_naive[0][0]), 
-                    (int(0.6*w), int(0.13*h)),
-                    fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
-        cv2.putText(self.segmented_frame, 'Road\'s width: {:.2f} m'.format(dist_naive), 
-                    (int(0.35*w), int(0.18*h)),
-                    fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
+            cv2.putText(self.segmented_frame, 'Road\'s width: {:.2f} m'.format(dist_naive), 
+                        (int(0.35*w), int(0.18*h)),
+                        fontFace = 16, fontScale = fontScale, color=(255,255,255), thickness = thickness)
+        else:
+            cv2.putText(self.segmented_frame, 'Cannot compute width of road at {:.2f} m depth:'.format(self.depth),
+                        (int(0.28*w), int(0.035*h)),
+                        fontFace = 16, fontScale = fontScale+0.2, color=(0,255,0), thickness = thickness)
 
         ##########################################################################
         # 8.A Project the 3D points that define the line to the image plane
@@ -290,8 +358,17 @@ class FrameProcessor():
 
         # For FENCEs and ROAD (Naive approach)
         point_cloud = PointCloud2Ply(road3D, road_colors, '{}/{}_naive'.format(result_ply_dir, output_name))
-        point_cloud.add_extra_point_cloud(line_naive, colors_line_naive)
+        if line_found:
+            point_cloud.add_extra_point_cloud(line_naive, colors_line_naive)
         point_cloud.prepare_and_save_point_cloud()
+
+
+        # render pointcloud using open3d
+        # road3D_pcd = PointCloud()
+        # road3D_pcd.points = Vector3dVector(point_cloud.points3D)
+        # road3D_pcd.colors = Vector3dVector(point_cloud.colors)
+        # draw_geometries([road3D_pcd])
+        # render_plys(road3D_pcd, '{}/{}_naive.png'.format(rendered_ply_dir, output_name))
 
         """
         # For ALL with Naive Approach
@@ -564,7 +641,6 @@ def main():
 
     args = parser.parse_args()
 
-
     # Input size
     input_shape = (args.input_height, args.input_width)
 
@@ -594,6 +670,7 @@ def main():
     result_images_dir = os.path.join(output_directory, 
                                      'result_sequence_imgs')
     result_ply_dir    = os.path.join(output_directory, 'result_sequence_ply')
+    rendered_ply_dir    = os.path.join(output_directory, 'rendered_sequence')
 
     if not os.path.exists(result_images_dir):
         print("Creating directory for storing result frame")
@@ -603,16 +680,25 @@ def main():
         print("Creating directory for storing result ply")
         os.makedirs(result_ply_dir)
 
-    
+    if not os.path.exists(rendered_ply_dir):
+        print("Creating directory for storing rendered ply")
+        os.makedirs(rendered_ply_dir)
+
+
     # Process input frames
     for input_frame in sorted(glob.glob(args.input_folder)):
 
+
+        # if input_frame != "data/stuttgart_video_test/stuttgart_02_000000_006226_leftImg8bit.png":
+        #     continue
+
         print("Processing", input_frame)
+
 
         output_name = os.path.basename(input_frame)
         output_name = os.path.splitext(output_name)[0]
         frame_processor.process_frame(input_frame, output_name, 
-                                      result_images_dir, result_ply_dir)
+                                      result_images_dir, result_ply_dir, rendered_ply_dir)
 
 
 if __name__ == "__main__":

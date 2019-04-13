@@ -299,6 +299,10 @@ def get_end_points_of_segment(segment):
     # has a fixed 'y' and 'z' value, only varying in the 'x' dimension.
     # Consequently, we only take the 'x' components of every 3D point that forms the segment
     segment_X = segment[:, 0]
+
+    if segment_X.size == 0:
+        return None, None
+        
     # Find the points whose 'x' coordinates are min and max, respectively
     left_end_index  = np.where(segment_X == np.amin(segment_X))
     right_end_index = np.where(segment_X == np.amax(segment_X))
