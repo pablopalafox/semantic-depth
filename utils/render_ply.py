@@ -11,7 +11,7 @@ def render_plys(ply_file, ply_name):
     vis.create_window()
     ctr = vis.get_view_control()
     
-    param = read_pinhole_camera_parameters("test.json")
+    param = read_pinhole_camera_parameters("top.json")
     
     vis.add_geometry(pcd)
     ctr.convert_from_pinhole_camera_parameters(param)
@@ -20,7 +20,7 @@ def render_plys(ply_file, ply_name):
     ## UNCOMMENT TO SAVE INTRINSICS AS JSON
     # vis.run()
     # param = vis.get_view_control().convert_to_pinhole_camera_parameters()
-    # write_pinhole_camera_parameters("test.json", param)
+    # write_pinhole_camera_parameters("frontal.json", param)
     # exit()
     ##########################################
 

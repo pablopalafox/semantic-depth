@@ -319,8 +319,10 @@ def compute_distance_in_3D(pt3D_A, pt3D_B):
 
 
 def create_3Dline_from_3Dpoints(left_pt, right_pt, color):
-    v = right_pt-left_pt
-    t_values = np.arange(0.0, 1.0, 0.005)
+    left_pt[0][1] += 0.01
+    right_pt[0][1] += 0.01
+    v = right_pt - left_pt
+    t_values = np.arange(0.0, 1.0, 0.001)
     line = left_pt
     for t in t_values:
         line = np.append(line, left_pt + (t * v), axis=0)

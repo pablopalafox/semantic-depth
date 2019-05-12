@@ -101,15 +101,13 @@ SemanticDepth merges together [semantic segmentation](#sem_seg) and [monocular d
 <a name="test_pipeline"></a>
 ### Test SemanticDepth on our Munich test set
 
-By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths so that the best one can be found. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a [monodepth model trained on the Cityscapes dataset](#monodepth), and Cityscapes comprises images with a certain focal lenght. As the author (Godard) puts it in this [discussion](https://github.com/mrharicot/monodepth/issues/190), the behaviour is undefined with images which have different aspect ratios and focal lengths as those on which we trained the model, since the network really only saw one type of images. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers (see [discussion on the topic](https://github.com/mrharicot/monodepth/issues/190)).
+By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a [monodepth model trained on the Cityscapes dataset](#monodepth), and Cityscapes comprises images with a certain focal lenght. As the author (Godard) puts it in this [discussion](https://github.com/mrharicot/monodepth/issues/190), the behaviour is undefined with images which have different aspect ratio and focal length as those on which we trained the model, since the network really only saw one type of images. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers (see [discussion on the topic](https://github.com/mrharicot/monodepth/issues/190)).
 
-
-
-`$ python dist2fence_frame.py --save_data`
+`$ python semantic_depth.py --save_data`
 
 Results will be stored inside a newly created folder called **results**. Inside this folder, two more directories, namely **380** and **580**, will have been created, each containing the results relative to each of the 5 test images on which we have applied SemanticDepth. Also, a file _data.txt_ will have been generated, where every line refers to a test image except the last line. For every line (every test image), we save the following:
 
-`real_distance|dist_naive|dist_advanced|abs(real_distance-dist_naive)|abs(real_distance-dist_advanced)`
+`real_distance|road_width|fence2fence|abs(real_distance-road_width)|abs(real_distance-fence2fence)`
 
 The last line of this _data.txt_ contains the Mean Absolute Error for the absolute differences between the estimated distance and the real distance at a depth of x meters -- in our experiments, we set x = 10 m. We compute the MAE both for the naive and the advanced approaches (see the [Introduction](#intro) for an explanation on these two approaches).
 
@@ -130,7 +128,7 @@ The rest of the files can be disregarded. They are only generated for sanity che
 
 Note that you can set the `--verbose` option when running the previous command to get more info during execution, like so:
 
-`$ python dist2fence_frame.py --save_data --verbose`
+`$ python semantic_depth.py --save_data --verbose`
 
 
 #### Other functionalites
@@ -138,7 +136,7 @@ Note that you can set the `--verbose` option when running the previous command t
 
 Note as well that running the python script without any arguments
 
-`$ python dist2fence_frame.py`
+`$ python semantic_depth.py`
 
 will just generate the following files:
 
@@ -150,18 +148,23 @@ So no backend info (i.e., no 3D point clouds, which are just used in the backend
 
 Also, by running the following, SemanticDepth will be applied using the focal length provided as argument:
 
-`$ python dist2fence_frame.py --fov=360`
+`$ python semantic_depth.py --f=360`
 
 Other params:
 
 * `--input_frame=<pathToImage>`: If set, the pipeline will only be applied to the indicated image 
 * `--aproach=both`: If set to _both_, naive and advanced approaches are used (the other option is _naive_).
+* `--is_city`: Must be set when we want to process an image from Cityscapes. It helps set the correct intrinsic camera parameters).
+
+For instance, to test the system on a single Cityscapes image, you could run:
+
+`python semantic_depth.py --input_frame=media/images/bielefeld_018644.png --save_data --is_city --f=580`
 
 ### Test SemanticDepth on the Stuttgart video sequence from Cityscapes
 
 Download the Stuttgart sequence from [Cityscapes](https://www.cityscapes-dataset.com/login/). Extract all the _png_ images from the sequence (or just a subset of the sequence) into *data/stuttgart_video_test*. Then run:
 
-`$ python dist2fence_cityscapes_sequence.py --verbose`
+`$ python semantic_depth_cityscapes_sequence.py --verbose`
 
 By default, the _naive distance_ will be computed, given that the Stuttgart sequence does not have walls/fences at each side of the road, as a Formula-E-like racetrack would, on which to compute our _advanced distance_.
 

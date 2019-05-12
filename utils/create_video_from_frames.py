@@ -10,14 +10,16 @@ import glob
 # 				"../results/stuttgart_video/result_top_render.mp4", 
 # 				"../results/stuttgart_video/result_frontal_render.mp4"]
 
-input_paths = ["../results/stuttgart_video/rendered_sequence_top/*.png"]
 
-output_paths = ["../results/stuttgart_video/result_top_render.mp4"]
+
+input_paths = ["../results/stuttgart_video/result_sequence_imgs/*.png"]
+
+output_paths = ["../results/stuttgart_video/result_imgs.mp4"]
 
 for i in range(len(input_paths)):
 	print("Reading from", input_paths[i])
 
-	test_frame = cv2.imread("../results/stuttgart_video/rendered_sequence_good_frontal/stuttgart_02_000000_005100_leftImg8bit_naive.png")
+	test_frame = cv2.imread("../results/stuttgart_video/result_sequence_imgs/stuttgart_02_000000_005100_leftImg8bit.png")
 	height, width = test_frame.shape[0], test_frame.shape[1]
 	print(height, width)
 

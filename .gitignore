@@ -16,3 +16,9 @@ README_old.md
 *.json
 .open3d
 data/stuttgart_tmp
+backproject.py
+fence_overlaid.png
+road.png
+semantic_depth.py
+semantic_depth_cityscapes_sequence.py
+stuttgart_02_000000_005176_leftImg8bit_raw.ply
