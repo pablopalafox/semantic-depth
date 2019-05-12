@@ -10,7 +10,7 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 
 Click on the image below to watch a VIDEO demonstrating the system on Cityscapes:
 
-[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=O829ZJqF1Dc/0.jpg)](https://youtu.be/O829ZJqF1Dc)
+[![STUTTGART SEQUENCE](http://img.youtube.com/vi/O829ZJqF1Dc/0.jpg)](https://youtu.be/O829ZJqF1Dc)
 
 ---
 
