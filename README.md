@@ -19,9 +19,9 @@ SemanticDepth is a deep learning-based computer vision pipeline that computes th
 
 It does so by fusing together two deep learning-based architectures, namely a **semantic segmentation** network ([fcn8-s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf)) and a **monocular depth estimation** network ([monodepth](https://github.com/mrharicot/monodepth))
 
-We have two ways of computing the depth of the road at a certain depth. First, a __naive distance__. This results from computing the pointcloud corresponding to the road in front of us first and computing the distance between the furthest point to the left and the furthest point to the right (of this road pointcloud) at a certain depth later -- depth meaning the direction in front of us.
+We have two ways of computing the width of the road at a certain depth. First, the __road's width__ itself. This measure is obtained like so. We obtain the point cloud corresponding to the road in front of the camera. Then we compute the distance between the furthest point to the left and the furthest point to the right of this road point cloud at a certain depth. Here, depth means the direction in front of the camera.
 
-Second, an __advanced distance__. Here we additionally extract the pointclouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the road pointcloud and to both the left and right fences. We compute the intersection between the road plane with the left fence plane, and the intersection between the road plane and the right fence plane. We end up with two intersected lines, and we can now decide on a depth at which we wish to compute the width of the road. 
+Second, the __fence-to-fence distance__. In this approach we additionally extract the point clouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the point clouds of the road and to those of the left and right fences. We compute the intersection between the road's plane with the left fence's plane, and the intersection between the road's plane and the right fence's plane. We end up with two intersected lines. We can now decide on a depth at which we wish to compute the width of the road, here meaning the distance between these two intersection lines.
 
 <p align="center">
 	<img src="/assets/images/pipeline.png" alt="pipeline">
@@ -82,7 +82,7 @@ to get the [dependencies](requirements.txt) needed.
 
 For the semantic segmentation task, we labeled 750 [Roborace](https://roborace.com/) images with the classes fence, road and background. For the task of labelling our own images, we used the [cityscapesScripts](https://github.com/mcordts/cityscapesScripts).
 
-We cannot make the whole dataset public, as the original images are property of the [Roborace](https://roborace.com/) competition. A mockup of this dataset can be found [here](data/roborace750_mockup). It fpllows the same structure as the Cityscapes dataset. If you would like to get more images, join the [Roborace](https://roborace.com/) competition and you'll get tons of data from the racetracks.
+We cannot make the whole dataset public, as the original images are property of the [Roborace](https://roborace.com/) competition. A mockup of this dataset can be found [here](data/roborace750_mockup). It follows the same structure as the Cityscapes dataset. If you would like to get more images, join the [Roborace](https://roborace.com/) competition and you'll get tons of data from the racetracks.
 
 Another option is training on [Cityscapes](https://www.cityscapes-dataset.com/) on the classes _fence_ and _road_ (and _background_). If your goal is participating in the Roborace competition, doing this can get you decent results when running inference on Roborace images.
 
@@ -90,22 +90,22 @@ Another option is training on [Cityscapes](https://www.cityscapes-dataset.com/) 
 
 [MonoDepth](https://github.com/mrharicot/monodepth), an unsupervised single image depth prediction network that we make use of in our work, can be trained on [Kitti](http://www.cvlibs.net/datasets/kitti/eval_depth_all.php) or [Cityscapes](https://www.cityscapes-dataset.com/).
 
-We directly use the pre-trained model for Cityscapes, which you can get at the [monodepth](https://github.com/mrharicot/monodepth) repo, at the Models section. Alternatively, follow the instructions in section [Monodepth model](#monodepth).
+We directly use a model pre-trained on Cityscapes, which you can get at the [monodepth](https://github.com/mrharicot/monodepth) repo, at the Models section. Alternatively, follow the instructions in section [Monodepth model](#monodepth).
 
 
 ### Munich Test Set
 
-This is a set of 5 images of the streets of Munich on which you can test the whole pipeline. You can find it [here](data/test_images_munich). In section [Test SemanticDepth on our Munich test set](#test_pipeline), you can find the commands on how to test our whole pipeline on these images.
+This is a set of 5 images of the streets of Munich on which you can test the whole pipeline. You can find it [here](data/test_images_munich). In section [Test SemanticDepth on our Munich test set](#test_pipeline) you can find the commands on how to test our whole pipeline on these images.
 
 
 
 ## 3. SemanticDepth - The whole pipeline
-SemanticDepth merges together [semantic segmentation](#sem_seg) and [monocular depth estimation](#monodepth) to compute the distance from the left fence to the right fence in a FormulaE-like circuit. We have also found that by using a semantic segmentation model trained on Roborace images for fence and road classification plus a [monodepth](https://github.com/mrharicot/monodepth) model for disparity estimation, our pipeline generalizes to city environments, like those featured in our [Munich test set](data/test_images_munich).
+SemanticDepth merges together [semantic segmentation](#sem_seg) and [monocular depth estimation](#monodepth) to compute the distance from the left fence to the right fence in a Formula E-like circuit (where the Roborace competition takes place). We have also found that by using a semantic segmentation model trained on Roborace images for fence and road classification plus a [monodepth](https://github.com/mrharicot/monodepth) model pre-trained on Cityscapes our pipeline generalizes to city environments, like those featured in our [Munich test set](data/test_images_munich).
 
 <a name="test_pipeline"></a>
-### Test SemanticDepth on our Munich test set
+### Test SemanticDepth
 
-By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a [monodepth model trained on the Cityscapes dataset](#monodepth), and Cityscapes comprises images with a certain focal lenght. As the author (Godard) puts it in this [discussion](https://github.com/mrharicot/monodepth/issues/190), the behaviour is undefined with images which have different aspect ratio and focal length as those on which we trained the model, since the network really only saw one type of images. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers (see [discussion on the topic](https://github.com/mrharicot/monodepth/issues/190)).
+By running the command below, SemanticDepth will be applied on the [Munich test set](data/test_images_munich) using different focal lengths. By default, the list of focal lengths to try is `[380, 580]`. The reason behind trying different focal lengths is that we are using a [monodepth model trained on the Cityscapes dataset](#monodepth), and Cityscapes comprises images with a certain focal lenght. As the author (Godard) puts it in this [discussion](https://github.com/mrharicot/monodepth/issues/190), the behaviour of monodepth is undefined when applied on images which have different aspect ratio and focal length as those on which the model was trained, since the network really only saw one type of images. Applying the same model on our own images requires that we tune the focal length so that computing depth from disparity outputs reasonable numbers (again, see [discussion on the topic](https://github.com/mrharicot/monodepth/issues/190)).
 
 `$ python semantic_depth.py --save_data`
 
@@ -113,17 +113,17 @@ Results will be stored inside a newly created folder called **results**. Inside 
 
 `real_distance|road_width|fence2fence|abs(real_distance-road_width)|abs(real_distance-fence2fence)`
 
-The last line of this _data.txt_ contains the Mean Absolute Error for the absolute differences between the estimated distance and the real distance at a depth of x meters -- in our experiments, we set x = 10 m. We compute the MAE both for the naive and the advanced approaches (see the [Introduction](#intro) for an explanation on these two approaches).
+The last line of this _data.txt_ contains the Mean Absolute Error for the absolute differences between the estimated distance and the real distance at a depth of x meters -- in our experiments, we set x = 10 m. We compute the MAE both for the road's width and the fence-to-fence distance (see the [Introduction](#intro) for an explanation on these two approaches).
 
 After having ran the previous python script with the `--save_data` argument set, we can now find the following inside the folders **380** and **580**:
 
-* **\*\_output.ply** contains the reconstructed 3D scene, featuring only the road, the walls and the [naive and advanced distances](#intro) (red and green lines). You can use [MeshLab](http://www.meshlab.net/) to open a PLY file.
+* **\*\_output.ply** contains the reconstructed 3D scene, featuring only the road, the walls and the [road's width and fence-to-fence distance](#intro) (red and green lines, respectively). You can use [MeshLab](http://www.meshlab.net/) to open a PLY file.
 
 * **\*\_output.png** features the segmented scene with the computed distances at the top.
 
 * **\*\_output_dips.png** is the disparity map that [monodepth](https://github.com/mrharicot/monodepth) predicts for the given input image.
 
-* **\*\_output_distances.txt** is a plain text file containing the predicted width of the road using both the [naive and advanced approaches](#intro).
+* **\*\_output_distances.txt** is a plain text file containing the [road's width and the fence-to-fence distance](#intro).
 
 * **\*\_output_times.txt** is a plain text file containing the inference times for each task of the pipeline.
 
@@ -144,7 +144,7 @@ Note as well that running the python script without any arguments
 
 will just generate the following files:
 
-* **\*\_output_distances.txt** is a plain text file containing the predicted width of the road using both the naive and advanced approaches.
+* **\*\_output_distances.txt** is a plain text file containing the [road's width and fence-to-fence distance](#intro).
 
 * **\*\_output_times.txt** is a plain text file containing the inference times for each task of the pipeline.
 
@@ -160,9 +160,13 @@ Other params:
 * `--aproach=both`: If set to _both_, naive and advanced approaches are used (the other option is _naive_).
 * `--is_city`: Must be set when we want to process an image from Cityscapes. It helps set the correct intrinsic camera parameters).
 
-For instance, to test the system on a single Cityscapes image, you could run:
+#### I just want to test the system on a single image!
+
+Simply run:
 
 `python semantic_depth.py --input_frame=media/images/bielefeld_018644.png --save_data --is_city --f=580`
+
+The `--is_city` flag indicates the system that we are processing a Cityscapes frame.
 
 ### Test SemanticDepth on the Stuttgart video sequence from Cityscapes
 
