@@ -2,4 +2,4 @@
 
 https://www.cityscapes-dataset.com/login/
 
-You'll have to create an acount
+You'll need to create an account.

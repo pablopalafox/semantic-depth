@@ -22,4 +22,4 @@ road.png
 semantic_depth.py
 semantic_depth_cityscapes_sequence.py
 stuttgart_02_000000_005176_leftImg8bit_raw.ply
-monodepth_lib/
+monodepth_lib/*.py
