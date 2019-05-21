@@ -5,4 +5,4 @@
 * **monodepth_dataloader.py** 
 * **monodepth_model.py** 
 
-Get those and put a copy inside the folder [thirdparty/monodepth_lib](thirdparty/monodepth_lib), that is, in the folder where this README.md file is now.
+Get those and put a copy inside the folder [monodepth_lib](monodepth_lib), that is, in the folder where this README.md file is now.
