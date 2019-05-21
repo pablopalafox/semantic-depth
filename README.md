@@ -21,9 +21,9 @@ It does so by fusing together two deep learning-based architectures, namely a **
 
 We have two ways of computing the width of the road at a certain depth:
 
-* The __road's width__ itself. This measure is obtained like so. We obtain the point cloud corresponding to the road in front of the camera. Then we compute the distance between the furthest point to the left and the furthest point to the right of this road point cloud at a certain depth. Here, depth means the direction in front of the camera.
+* The __road's width__ (rw) itself. This measure is obtained like so. We obtain the point cloud corresponding to the road in front of the camera. Then we compute the distance between the furthest point to the left and the furthest point to the right of this road point cloud at a certain depth. Here, depth means the direction in front of the camera.
 
-* The __fence-to-fence distance__. In this approach we additionally extract the point clouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the point clouds of the road and to those of the left and right fences. We compute the intersection between the road's plane with the left fence's plane, and the intersection between the road's plane and the right fence's plane. We end up with two intersected lines. We can now decide on a depth at which we wish to compute the width of the road, here meaning the distance between these two intersection lines.
+* The __fence-to-fence distance__ (f2f). In this approach we additionally extract the point clouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the point clouds of the road and to those of the left and right fences. We compute the intersection between the road's plane with the left fence's plane, and the intersection between the road's plane and the right fence's plane. We end up with two intersected lines. We can now decide on a depth at which we wish to compute the width of the road, here meaning the distance between these two intersection lines.
 
 <p align="center">
 	<img src="/assets/images/semanticdepth.png" alt="pipeline">
@@ -159,7 +159,7 @@ Also, by running the following, SemanticDepth will be applied using the focal le
 Other params:
 
 * `--input_frame=<pathToImage>`: If set, the pipeline will only be applied to the indicated image 
-* `--aproach=both`: If set to _both_, naive and advanced approaches are used (the other option is _naive_).
+* `--aproach=both`: If set to _both_, the road's width (rw) and the fence-to-fence distance (f2f) are computed. By setting it to _rw_ only the road's width will be computed.
 * `--is_city`: Must be set when we want to process an image from Cityscapes. It helps set the correct intrinsic camera parameters).
 
 #### I just want to test the system on a single image!
@@ -176,7 +176,7 @@ Download the Stuttgart sequence from [Cityscapes](https://www.cityscapes-dataset
 
 `$ python semantic_depth_cityscapes_sequence.py --verbose`
 
-By default, the _naive distance_ will be computed, given that the Stuttgart sequence does not have walls/fences at each side of the road, as a Formula-E-like racetrack would, on which to compute our _advanced distance_.
+By default, the _road's width_ will be computed, given that the Stuttgart sequence does not have walls/fences at each side of the road, as a Formula-E-like racetrack would, on which to compute our _fence-to-fence distance_.
 
 In the **results** folder (which will have been created in the root if you didn't have one yet) you will find a new folder named **stuttgart_video** containing two other directories, namely **result_sequence_imgs** and **result_sequence_ply**. The former contains the output images with the computed distances written on the frame; the latter contains the masked 3D point cloud on which we compute the road's width at a certain depth.
 
