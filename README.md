@@ -17,11 +17,13 @@ Click on the image below to watch a VIDEO demonstrating the system on Cityscapes
 <a name="intro"></a>
 SemanticDepth is a deep learning-based computer vision pipeline that computes the width of the road at a certain depth in front of a car. 
 
-It does so by fusing together two deep learning-based architectures, namely a **semantic segmentation** network ([fcn8-s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf)) and a **monocular depth estimation** network ([monodepth](https://github.com/mrharicot/monodepth))
+It does so by fusing together two deep learning-based architectures, namely a **semantic segmentation** network ([fcn8-s](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf)) and a **monocular depth estimation** network ([monodepth](https://github.com/mrharicot/monodepth)).
 
-We have two ways of computing the width of the road at a certain depth. First, the __road's width__ itself. This measure is obtained like so. We obtain the point cloud corresponding to the road in front of the camera. Then we compute the distance between the furthest point to the left and the furthest point to the right of this road point cloud at a certain depth. Here, depth means the direction in front of the camera.
+We have two ways of computing the width of the road at a certain depth:
 
-Second, the __fence-to-fence distance__. In this approach we additionally extract the point clouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the point clouds of the road and to those of the left and right fences. We compute the intersection between the road's plane with the left fence's plane, and the intersection between the road's plane and the right fence's plane. We end up with two intersected lines. We can now decide on a depth at which we wish to compute the width of the road, here meaning the distance between these two intersection lines.
+* The __road's width__ itself. This measure is obtained like so. We obtain the point cloud corresponding to the road in front of the camera. Then we compute the distance between the furthest point to the left and the furthest point to the right of this road point cloud at a certain depth. Here, depth means the direction in front of the camera.
+
+* The __fence-to-fence distance__. In this approach we additionally extract the point clouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the point clouds of the road and to those of the left and right fences. We compute the intersection between the road's plane with the left fence's plane, and the intersection between the road's plane and the right fence's plane. We end up with two intersected lines. We can now decide on a depth at which we wish to compute the width of the road, here meaning the distance between these two intersection lines.
 
 <p align="center">
 	<img src="/assets/images/pipeline.png" alt="pipeline">
