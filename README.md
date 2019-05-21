@@ -255,6 +255,6 @@ $ ./get_monodepth_model.sh model_cityscapes ./monodepth/model_cityscapes
 
 Files [fcn8s/fcn.py](fcn8s/fcn.py) and [fcn8s/helper.py](fcn8s/helper.py) are based on the [FCN-8s implementation by Udacity](https://github.com/udacity/CarND-Semantic-Segmentation), released under the [MIT License](https://opensource.org/licenses/MIT).
 
-The rest of the files not mentioned above in this project are released under a [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
+The rest of the files in this project are released under a [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 Check the [LICENSE](LICENSE) for a detailed explanation on the licenses under which this work is released.

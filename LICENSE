@@ -12,7 +12,7 @@ Files *fcn8s/fcn.py* and *fcn8s/helper.py* are based on the [FCN-8s implementati
 ###################################################   LICENSE 2 ################################################################
 ################################################################################################################################
 
-Except the mentioned function 'post_process_disparity' inside our files *dist2fence_frame.py* and *dist2fence_frame_NO_PRINT.py*, which belongs to the MonoDepth Software and therefore has [Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.], the rest of the files in this project are released under a GPLv3 License:
+Except function 'post_process_disparity' inside our files *dist2fence_frame.py* and *dist2fence_frame_NO_PRINT.py*, which belongs to the MonoDepth Software and therefore has [Copyright © Niantic, Inc. 2018. Patent Pending. All rights reserved.], the rest of the files in this project are released under a GPLv3 License:
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
