@@ -3,8 +3,8 @@ Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of
 
 | | |
 |:-------------------------:|:-------------------------:|
-|<img alt="test_3" src="/assets/images/test_munich/test_3.png">  |  <img alt="test_3_output" src="/assets/images/test_munich/test_3_output.png">|
-|<img alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.png">  |  <img alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.png">|
+|<img alt="test_3" src="/assets/images/test_munich/test_3.jpg">  |  <img alt="test_3_output" src="/assets/images/test_munich/test_3_output.jpg">|
+|<img alt="test_3_ALL" src="/assets/images/test_munich/test_3_ALL.jpg">  |  <img alt="test_3_planes" src="/assets/images/test_munich/test_3_planes.jpg">|
 
 ---
 
@@ -26,7 +26,7 @@ We have two ways of computing the width of the road at a certain depth:
 * The __fence-to-fence distance__ (f2f). In this approach we additionally extract the point clouds corresponding to left and right fences/walls to each side of the road (assuming they exist). Then we fit planes to the point clouds of the road and to those of the left and right fences. We compute the intersection between the road's plane with the left fence's plane, and the intersection between the road's plane and the right fence's plane. We end up with two intersected lines. We can now decide on a depth at which we wish to compute the width of the road, here meaning the distance between these two intersection lines.
 
 <p align="center">
-	<img src="/assets/images/semanticdepth.png" alt="pipeline">
+	<img src="/assets/images/semanticdepth.jpg" alt="pipeline">
 </p>
 
 This work was done as part of my Semesterarbeit (literally, semester work) at [TUM's Chair of Automotive Technology](https://www.ftm.mw.tum.de/startseite/). For more info on the pipeline, check my [thesis](/assets/pdfs/semanticDepthPabloRodriguezPalafox.pdf).
