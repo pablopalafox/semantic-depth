@@ -10,7 +10,7 @@ Fusing Semantic Segmentation and Monocular Depth Estimation for Enabling Autonom
 
 Click on the image below to watch a VIDEO demonstrating the system on Cityscapes:
 
-[![STUTTGART SEQUENCE](http://img.youtube.com/vi/2GVD2krQeDI/0.jpg)](https://youtu.be/2GVD2krQeDI)
+[![STUTTGART SEQUENCE](http://img.youtube.com/vi/0yBb6kJ3mgQ/0.jpg)](https://youtu.be/0yBb6kJ3mgQ)
 
 ---
 
