@@ -1,5 +1,5 @@
 # SemanticDepth
-Deep Learning-based Computer Vision Pipeline to improve Situational Awareness of an Autonomous Vehicle
+Fusing Semantic Segmentation and Monocular Depth Estimation for Enabling Autonomous Driving in Roads without Lane Lines
 
 | | |
 |:-------------------------:|:-------------------------:|
