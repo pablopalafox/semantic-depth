@@ -1,4 +1,4 @@
-## Contact us at pablo.rodriguez-palafox@tum.de and ask for pre-trained models for the semantic segmentation task.
+## Contact us at pablo.palafox@tum.de and ask for pre-trained models for the semantic segmentation task.
 
 As subject of the email, use:
 
