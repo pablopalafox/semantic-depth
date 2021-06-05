@@ -1,12 +1,5 @@
 ## Contact us at pablo.palafox@tum.de and ask for pre-trained models for the semantic segmentation task.
 
-As subject of the email, use:
+You can find our pretrained models [here](https://drive.google.com/drive/folders/1Ahs_sQMG7KWhFZMcKECbSymM999WzHd3?usp=sharing)
 
-[SemanticDepth] Pre-trained semantic segmentation models
-
-We'll send you the following models:
-
-*30-Epochs-cityscapes*
-*100-Epochs-roborace750*
-
-Create a folder named *sem_seg* and put them inside.
+Create a folder named *sem_seg* withing this `models` folder and put them inside.
