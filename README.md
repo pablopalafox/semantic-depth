@@ -1,7 +1,9 @@
 # SemanticDepth
-Fusing Semantic Segmentation and Monocular Depth Estimation for Enabling Autonomous Driving in Roads without Lane Lines
 
 ### [Paper](https://www.mdpi.com/1424-8220/19/14/3224/htm) | [Video](https://youtu.be/0yBb6kJ3mgQ)
+
+Fusing Semantic Segmentation and Monocular Depth Estimation for Enabling Autonomous Driving in Roads without Lane Lines
+
 
 | | |
 |:-------------------------:|:-------------------------:|
