@@ -1,6 +1,8 @@
 # SemanticDepth
 Fusing Semantic Segmentation and Monocular Depth Estimation for Enabling Autonomous Driving in Roads without Lane Lines
 
+### [Paper](https://www.mdpi.com/1424-8220/19/14/3224/htm) | [Video](https://youtu.be/0yBb6kJ3mgQ)
+
 | | |
 |:-------------------------:|:-------------------------:|
 |<img alt="test_3" src="/assets/images/test_munich/test_3.jpg">  |  <img alt="test_3_output" src="/assets/images/test_munich/test_3_output.jpg">|
@@ -29,14 +31,20 @@ We have two ways of computing the width of the road at a certain depth:
 	<img src="/assets/images/semanticdepth.jpg" alt="pipeline">
 </p>
 
-This work was done as part of my Semesterarbeit (literally, semester work) at [TUM's Chair of Automotive Technology](https://www.ftm.mw.tum.de/startseite/). For more info on the pipeline, check my [thesis](/assets/pdfs/semanticDepthPabloRodriguezPalafox.pdf).
 
-Author: [Pablo Rodriguez Palafox](https://pablorpalafox.github.io/)  
-Advisor: [Johannes Betz, M.Sc.](https://www.ftm.mw.tum.de/lehrstuhl/mitarbeiter/fahrdynamik/johannes-betz-m-sc/johannes-betz-m-sc/)   
-Head of Chair of Automotive Technology: [Univ.-Prof. Dr.-Ing. Markus Lienkamp](https://www.ftm.mw.tum.de/lehrstuhl/mitarbeiter/lehrstuhlleitung/prof-dr-ing-markus-lienkamp-3/prof-dr-ing-markus-lienkamp-lebenslauf/)  
-[Chair of Automotive Technology](https://www.ftm.mw.tum.de/startseite/)   
-[Department of Mechanical Engineering](https://www.mw.tum.de/startseite/)  
-[Technical University Munich](https://www.tum.de/)  
+## Citation
+If you find our work useful in your research, please consider citing:
+
+	@article{palafox2019semanticdepth,
+	  title={Semanticdepth: Fusing semantic segmentation and monocular depth estimation for enabling autonomous driving in roads without lane lines},
+	  author={Palafox, Pablo R and Betz, Johannes and Nobis, Felix and Riedl, Konstantin and Lienkamp, Markus},
+	  journal={Sensors},
+	  volume={19},
+	  number={14},
+	  pages={3224},
+	  year={2019},
+	  publisher={Multidisciplinary Digital Publishing Institute}
+	}
 
 
 
